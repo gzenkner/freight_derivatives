@@ -1,0 +1,129 @@
+clearing_house,contract_code,contract_name,contract_type,source_url
+CME,FBX01,FBX01 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,FBX02,FBX02 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,FBX03,FBX03 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,FBX11,FBX11 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,FBX12,FBX12 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,FBX13,FBX13 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC2,TC2 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC6,TC6 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC11,TC11 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC12,TC12 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC14,TC14 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC15,TC15 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC17,TC17 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC2,TC2 (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC6,TC6 (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC11,TC11 (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC12,TC12 (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC14,TC14 (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC15,TC15 (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC2,Mini Freight Route TC2 (Baltic) Daily Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC14,Mini Freight Route TC14 (Baltic) Daily Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TC2,TC2 (Baltic) Average Price Option,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD3C,TD3C (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD7,TD7 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD8,TD8 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD20,TD20 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD22,TD22 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD25,TD25 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD3C,TD3C (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD7,TD7 (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD8,TD8 (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD20,TD20 (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD3C,Mini Freight Route TD3C (Baltic) Daily Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD20,Mini Freight Route TD20 (Baltic) Daily Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,TD3C,TD3C (Baltic) Average Price Option,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,BLNG1g,LNG Freight Route BLNG1g (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,BLNG2g,LNG Freight Route BLNG2g (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,BLNG3g,LNG Freight Route BLNG3g (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,LPG1,LPG Freight Route LPG1 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,LPG1,LPG Freight Route LPG1 (Baltic) BALMO Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,LPG1,LPG Freight Route LPG1 Average Price Option,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+CME,LPG3,LPG Freight Route LPG3 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,C3,Baltic Capesize C3 Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,C5,Baltic Capesize C5 Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,C7,Baltic Capesize C7 Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,5TC,Baltic Capesize 5TC (182) Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,5TC,Baltic Capesize 5TC (180) Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,P1E,Baltic Panamax TA P1E Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,P2E,Baltic Panamax Far East P2E Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,P3E,Baltic Panamax Pacific P3E Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,P6,Baltic Panamax P6 Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,5TC,Baltic Panamax 5TC Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,11TC,Baltic Supramax 11TC Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,10TC,Baltic Supramax 10TC Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,7TC,Baltic Handysise 7TC Freight Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,5TC,Baltic Capesize 5TC Freight Option,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,C5,Baltic Capesize C5 Freight Option,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,5TC,Baltic Panamax 5TC Freight Option,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,11TC,Baltic Supramax 11TC Freight Option,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+EEX,10TC,Baltic Supramax 10TC Freight Option,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC7,TC7 FFA Singapore to EC Australia (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC12,TC12 FFA WCI to Japan (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC15,TC15 FFA Med to Far East (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC17,TC17 FFA Arab Gulf to East Africa (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC18,TC18 FFA - US Gulf to Brazil (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC23,TC23 FFA - ARA to UK Cont (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC2,TC2 FFA Northwest Europe to USAC (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC6,TC6 FFA Skikda to Lavera (Cross Med) (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC7,TC7 FFA Singapore to EC Australia (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC12,TC12 FFA WCI to Japan (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC14,TC14 FFA USGC to Continent (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC15,TC15 FFA Med to Far East (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC17,TC17 FFA AG to East Africa (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC18,TC18 US Gulf to Dubai (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC23,TC23 FFA - ARA to UK Cont (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC2,Daily TC2 FFA Northwest Europe to USAC (Baltic) Mini Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC6,Daily TC6 FFA Skikda to Lavera (Cross Med) (Baltic) Mini Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC12,Daily TC12 FFA WCI to Japan (Baltic) Mini Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC14,Daily TC14 FFA USGC to Continent (Baltic) Mini Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC2,TC2 FFA Northwest Europe To Usac (Baltic) Average Price Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC6,TC6 FFA Skikda to Lavera (Cross Med) (Baltic) Average Price Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC14,TC14 FFA USGC to Continent (Baltic) Average Price Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TC2,TC2 37 FFA Triangulation with TC14 FFA CPP/UNL Continent to USAC (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD3C,TD3C FFA Middle East Gulf to China (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD7,TD7 FFA UK North Sea to Continent (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD8,TD8 FFA Kuwait to Singapore (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD9,TD9 FFA - Caribbean to US Gulf (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD19,TD19 Cross Med (Ceyhan to Lavera) (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD22,TD22 US Gulf to China (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD28,TD28 FFA - WC Can to China (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD25,TD25 US Gulf to ARA (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD3C,TD3C FFA Middle East Gulf to China (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD8,TD8 FFA Kuwait to Singapore (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD20,TD20 FFA West Africa to UK Continent (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD22,TD22 FFA USG to China (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD3C,Daily TD3C FFA Middle East Gulf to China (Baltic) Mini Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD7,Daily TD7 FFA UK North Sea to Continent (Baltic) Mini Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD8,Daily TD8 FFA Kuwait to Singapore (Baltic) Mini Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD9,Daily TD9 FFA Caribbean to US Gulf (Baltic) Mini Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD19,Daily TD19 FFA Cross Med (Ceyhan to Lavera) (Baltic) Mini Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD20,Daily TD20 FFA West Africa to UK Continent (Baltic) Mini Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD3C,TD3C FFA Middle East Gulf to China (Baltic) Average Price Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD7,TD7 FFA UK North Sea To Continent (Baltic) Average Price Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,TD20,TD20 West Africa to UK Continent (Baltic) Average Price Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,BLPG1,LPG (BLPG1) FFA Middle East Gulf to East 44000Mts (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,BLPG1,LPG (BLPG1) FFA Middle East Gulf to East 44000Mts (Baltic) Balmo Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,BLPG1,LPG (BLPG1) FFA Middle East Gulf to East Average Price Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+ICE,BLPG3,LPG (BLPG3) FFA Houston to Chiba (Baltic) Future,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,FBX01,FBX01 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,FBX03,FBX03 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,FBX11,FBX11 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,FBX13,FBX13 (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,C3,Baltic Capesize Route C3 Futures/ FFA,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,C5,Baltic Capesize Route C5 Futures/FFA,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,C7,Baltic Capesize Route C7 Futures/FFA,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,,Baltic Capesize 182 Time Charter Average (5 Routes) Futures/FFA,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,,Baltic Capesize 180 Time Charter Average (5 Routes) Futures/FFA,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,P2E,Baltic Panamax Route P2E Futures/FFA,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,,Baltic Panamax Time Charter Average (5 Routes) Futures/FFA,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,,Baltic Supramax Time Charter Average (10 Routes) Futures/FFA,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,,Baltic Handysize Time Charter Average ( 7 Routes) Futures/FFA,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,,Baltic Capesize 180 Time Charter (5 Routes) Average Futures/FFA Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,,Baltic Capesize 182 Time Charter (5 Routes) Average Futures/FFA Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,,Baltic Panamax Time Charter Average (5 Routes) Futures/FFA Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,,Baltic Supramax Time Charter (10 Routes) Average Futures/FFA Options,OPTION,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,BLNG1g,LNG Freight Route BLNG1g (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,BLNG2g,LNG Freight Route BLNG2g (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+SGX,BLNG3g,LNG Freight Route BLNG3g (Baltic) Futures,FUTURE,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html

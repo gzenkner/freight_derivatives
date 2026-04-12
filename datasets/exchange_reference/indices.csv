@@ -1,0 +1,20 @@
+index_code,index_name,market,frequency,description,source_url
+BDI,Baltic Dry Index,DRY_BULK,DAILY,"Composite of Capesize (40%), Panamax (30%), Supramax (30%) timecharter averages.",https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BCI,Baltic Capesize Index,DRY_BULK,DAILY,Derived from 5TC weighted timecharter average.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BPI,Baltic Panamax Index,DRY_BULK,DAILY,Derived from 5TC weighted timecharter average.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BSI,Baltic Supramax Index,DRY_BULK,DAILY,Derived from S11TC weighted timecharter average.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BHSI,Baltic Handysize Index,DRY_BULK,DAILY,Derived from 7TC weighted timecharter average.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BCTI,Baltic Clean Tanker Index,TANKERS,DAILY,Average of selected clean routes multiplied by a constant.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BDTI,Baltic Dirty Tanker Index,TANKERS,DAILY,Weighted sum of selected dirty routes multiplied by a constant.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BLPG,Baltic LPG Index,GAS,DAILY,Average of BLPG1/2/3 (TCE) multiplied by 0.1.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+FBX00,FBX Global Container Index,CONTAINERS,WEEKLY,Headline index; weighted average of 12 underlying tradelanes.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BAI00,Baltic Air Freight Index,AIR_FREIGHT,WEEKLY,Headline index; weighted average of 17 destination basket routes.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BAI20,Frankfurt Outbound Index,AIR_FREIGHT,WEEKLY,Outbound index; weighted average of destination baskets from FRA.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BAI30,Hong Kong Outbound Index,AIR_FREIGHT,WEEKLY,Outbound index; weighted average of destination baskets from HKG.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BAI40,London Heathrow Outbound Index,AIR_FREIGHT,WEEKLY,Outbound index; weighted average of destination baskets from LHR.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BAI50,O'Hare (Chicago) Outbound Index,AIR_FREIGHT,WEEKLY,Outbound index; weighted average of destination baskets from ORD.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BAI60,Singapore Outbound Index,AIR_FREIGHT,WEEKLY,Outbound index; weighted average of destination baskets from SIN.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+BAI80,Shanghai Pudong Outbound Index,AIR_FREIGHT,WEEKLY,Outbound index; weighted average of destination baskets from PVG.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+DOPEX,Baltic Operating Expenses Index - Dry,INVESTOR_TOOLS,QUARTERLY,Daily vessel operating expenses for dry bulk classes.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+TOPEX,Baltic Operating Expenses Index - Tanker,INVESTOR_TOOLS,QUARTERLY,Daily vessel operating expenses for tanker classes.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+GOPEX,Baltic Operating Expenses Index - Gas,INVESTOR_TOOLS,QUARTERLY,Daily vessel operating expenses for LNG/LPG carriers.,https://www.balticexchange.com/en/data-services/market-information0/indices.html

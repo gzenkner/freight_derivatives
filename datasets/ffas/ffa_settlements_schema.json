@@ -1,0 +1,20 @@
+{
+  "table": "fact_ffa_settlements_daily",
+  "grain": "one row per instrument per contract per as_of_date",
+  "columns": [
+    { "name": "as_of_date", "type": "date", "required": true, "description": "Valuation/settlement date (daily)." },
+    { "name": "venue", "type": "string", "required": true, "description": "Publishing venue / exchange / clearing source (e.g., SGX, CME, Baltic)." },
+    { "name": "instrument_code", "type": "string", "required": true, "description": "Instrument identifier used by the source (or your internal canonical code)." },
+    { "name": "underlying_code", "type": "string", "required": true, "description": "Baltic route/index code where applicable (e.g., C5, TD3C, BCI)." },
+    { "name": "contract_type", "type": "string", "required": true, "description": "MONTH | QUARTER | CAL (or your chosen taxonomy)." },
+    { "name": "contract_label", "type": "string", "required": true, "description": "Human label, e.g. 2026-06, 2026-Q3, 2027-Cal." },
+    { "name": "contract_start", "type": "date", "required": false, "description": "Start date of the contract period." },
+    { "name": "contract_end", "type": "date", "required": false, "description": "End date of the contract period." },
+    { "name": "settlement", "type": "number", "required": true, "description": "Settlement/mark price for this contract on as_of_date." },
+    { "name": "currency", "type": "string", "required": false, "description": "Currency for settlement (e.g., USD)." },
+    { "name": "unit", "type": "string", "required": false, "description": "Quote unit (e.g., USD/day, USD/tonne, Worldscale)." },
+    { "name": "source_file", "type": "string", "required": false, "description": "Optional provenance pointer to raw file name." }
+  ],
+  "primary_key_suggested": ["as_of_date", "venue", "instrument_code", "contract_label"]
+}
+

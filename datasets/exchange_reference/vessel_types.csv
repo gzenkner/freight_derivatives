@@ -1,0 +1,13 @@
+vessel_type,market,segment,dwt_mt,max_age_years,loa_m,beam_m,tpc,grain_cbm,bale_cbm,notes,source_url
+CAPESIZE_182_DWT,DRY_BULK,CAPESIZE,182000,10,290,45,121,198000,,Timecharter vessel description for Capesize (non scrubber fitted).,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+PANAMAX_82500_DWT,DRY_BULK,PANAMAX,82500,12,229,32.25,70.5,97000,,Timecharter vessel description for Panamax (non scrubber fitted).,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+SUPRAMAX_63500_DWT,DRY_BULK,SUPRAMAX,63500,15,199.98,32.24,61.4,80500,76200,BSI63 vessel description (non-scrubber fitted); see page for full speeds/consumptions.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+HANDYSIZE_38200_DWT,DRY_BULK,HANDYSIZE,38200,15,180,29.8,49,47125,45300,Handysize 38 vessel description (non-scrubber fitted); geared bulk carrier.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+S&P_5Y_CAPESIZE_180000_DWT,INVESTOR_TOOLS,S&P,180000,,,,,,,Weekly 5yo vessel price assessment.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+S&P_5Y_PANAMAX_82500_DWT,INVESTOR_TOOLS,S&P,82500,,,,,,,Weekly 5yo vessel price assessment.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+S&P_5Y_SUPERHANDY_TESS58,INVESTOR_TOOLS,S&P,,,,,,,,Weekly 5yo vessel price assessment (Tess 58 type).,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+S&P_5Y_HANDYSIZE_38200_DWT,INVESTOR_TOOLS,S&P,38200,,,,,,,Weekly 5yo vessel price assessment.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+S&P_5Y_VLCC_305000_DWT,INVESTOR_TOOLS,S&P,305000,,,,,,,Weekly 5yo vessel price assessment.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+S&P_5Y_SUEZMAX_158000_DWT,INVESTOR_TOOLS,S&P,158000,,,,,,,Weekly 5yo vessel price assessment.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+S&P_5Y_AFRAMAX_115000_DWT,INVESTOR_TOOLS,S&P,115000,,,,,,,Weekly 5yo vessel price assessment.,https://www.balticexchange.com/en/data-services/market-information0/indices.html
+S&P_5Y_MR_PRODUCT_TANKER_51000_DWT,INVESTOR_TOOLS,S&P,51000,,,,,,,Weekly 5yo vessel price assessment.,https://www.balticexchange.com/en/data-services/market-information0/indices.html

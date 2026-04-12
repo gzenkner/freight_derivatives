@@ -1,0 +1,116 @@
+erDiagram
+
+INDICES {
+  string index_code PK
+  string index_name
+  string market
+  string frequency
+  string description
+  string source_url
+}
+
+INDEX_TIMESERIES {
+  string index_code FK
+  date date
+  float close
+  float open
+  float high
+  float low
+}
+
+ROUTES {
+  string route_code PK
+  string short_description
+  string market
+  string segment
+  string port_of_embarkment
+  string port_of_arrival
+  string source_url
+}
+
+VESSEL_TYPES {
+  string vessel_type PK
+  string market
+  string segment
+  int dwt_mt
+  int max_age_years
+  string notes
+  string source_url
+}
+
+INDEX_COMPONENTS {
+  string index_code FK
+  string component_code
+  string component_type
+  string mode
+  float weight
+  float scale_factor
+  string source_url
+}
+
+CLEARING_CONTRACTS {
+  string clearing_house
+  string contract_code
+  string contract_name
+  string contract_type
+  string source_url
+}
+
+FFA_CONTRACTS {
+  string venue
+  string instrument_code PK
+  string contract_code
+  string contract_name
+  string product_type
+  string contract_variant
+  string underlying_kind
+  string underlying_code
+  string market
+  string segment
+  string unit
+  string currency
+  string source_url
+  string validation_search_url
+}
+
+FFA_BROKERS {
+  string broker_name PK
+  string market
+  string segment
+  string website_url
+  string approved_by
+}
+
+BASKETS {
+  string basket_code PK
+}
+
+INDICES ||--o{ INDEX_TIMESERIES : has
+
+INDICES ||--o{ INDEX_COMPONENTS : composed_of
+
+ROUTES ||--o{ INDEX_COMPONENTS : can_feed
+
+VESSEL_TYPES ||--o{ INDEX_COMPONENTS : specs
+
+CLEARING_CONTRACTS ||--o{ FFA_CONTRACTS : listed_as
+
+ROUTES ||--o{ FFA_CONTRACTS : settles_to
+
+INDICES ||--o{ FFA_CONTRACTS : settles_to
+
+BASKETS ||--o{ FFA_CONTRACTS : settles_to
+
+%% Sources in this repo:
+
+%% - datasets/exchange_reference/indices.csv (columns: index_code, index_name, market, frequency, description, source_url)
+
+%% - datasets/exchange_reference/routes.csv (columns: route_code, short_description, market, segment, source_url, port_of_embarkment, port_of_arrival)
+
+%% - datasets/exchange_reference/vessel_types.csv (columns: vessel_type, market, segment, dwt_mt, max_age_years, loa_m, beam_m, tpc)
+
+%% - datasets/exchange_reference/index_components.csv (columns: index_code, component_code, component_type, mode, weight, scale_factor, source_url)
+
+%% - datasets/ffas/clearing_contracts.csv (columns: clearing_house, contract_code, contract_name, contract_type, source_url)
+
+%% - datasets/ffas/ffa_instruments.csv (columns: venue, exchange_name, instrument_code, contract_code, contract_name, underlying_code, underlying_kind, market)

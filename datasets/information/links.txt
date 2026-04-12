@@ -1,0 +1,31 @@
+# Primers (definitions + context)
+https://www.investopedia.com/terms/b/baltic_dry_index.asp
+https://www.investopedia.com/terms/f/freight_derivatives.asp
+
+# Charts / quick visuals
+https://www.tradingview.com/symbols/INDEX-BDI/
+
+# Contract specs (what you’re trading)
+https://www.ice.com/products/83048584/Baltic-Dry-Index-BDI-Future
+https://www.eex.com/en/global-commodities/dry-freight
+
+# Baltic Exchange (industry context + Baltic-linked derivatives)
+https://www.balticexchange.com/en/FFAS.html
+https://www.balticexchange.com/en/FFAS/How-to-trade-an-FFA.html
+
+
+https://www.balticexchange.com/en/FFAS/Role-of-the-Clearing-House.html
+https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html
+
+Real example of a ship operator hedging (selling an FFA)
+https://www.globenewswire.com/news-release/2009/01/26/1259516/0/en/Star-Bulk-Carriers-Corp-Announces-FFA-Transactions-Completion-of-Private-Placement-to-Insiders-and-Update-on-the-Star-Sigma-Employment.html
+
+
+# Baltic shipping indicies
+https://seecapitalmarkets.com/en/shipping-indexes
+
+
+https://www.balticexchange.com/en/who-we-are/faqs.html
+
+airfreight 
+https://dashboard.tacindex.com/dashboard

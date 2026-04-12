@@ -1,0 +1,138 @@
+route_code,short_description,market,segment,source_url,port_of_embarkment,port_of_arrival
+C2,Tubarao to Rotterdam,DRY_BULK,CAPESIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Tubarao,Rotterdam
+C3,Tubarao to Qingdao,DRY_BULK,CAPESIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Tubarao,Qingdao Gang
+C5,West Australia to Qingdao,DRY_BULK,CAPESIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Port Hedland,Qingdao Gang
+C7,Bolivar to Rotterdam,DRY_BULK,CAPESIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Puerto Bolivar,Rotterdam
+C8_182,Gibraltar/Hamburg transatlantic round voyage,DRY_BULK,CAPESIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Europa Point,Hamburg
+C9_182,Continent/Mediterranean trip China-Japan,DRY_BULK,CAPESIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Rotterdam,Tokyo Ko
+C10_182,China-Japan transpacific round voyage,DRY_BULK,CAPESIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Tokyo Ko,Los Angeles
+C14_182,China-Brazil round voyage,DRY_BULK,CAPESIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Tubarao,Qingdao Gang
+C16_182,Revised backhaul,DRY_BULK,CAPESIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+C17,Saldanha Bay to Qingdao,DRY_BULK,CAPESIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Saldanha Bay,Qingdao Gang
+P1A_82,Skaw-Gib transatlantic round voyage,DRY_BULK,PANAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Skagen Havn,Europa Point
+P1E_82,Panamax trip time charter route (EEX P1E_82),DRY_BULK,PANAMAX,https://www.eex.com/en/global-commodities/dry-freight,,
+P1E,Panamax trip time charter route (P1E; exchange/clearing shorthand),DRY_BULK,PANAMAX,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,,
+P2A_82,Skaw-Gib trip HK-S Korea incl Taiwan,DRY_BULK,PANAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Skagen Havn,Hong Kong
+P2E_82,Panamax trip time charter route (EEX P2E_82),DRY_BULK,PANAMAX,https://www.eex.com/en/global-commodities/dry-freight,,
+P2E,Panamax trip time charter route (P2E; exchange/clearing shorthand),DRY_BULK,PANAMAX,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,,
+P3A_82,Hong Kong-South Korea transpacific round voyage,DRY_BULK,PANAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Hong Kong,Busan
+P3E_82,Panamax trip time charter route (EEX P3E_82),DRY_BULK,PANAMAX,https://www.eex.com/en/global-commodities/dry-freight,,
+P3E,Panamax trip time charter route (P3E; exchange/clearing shorthand),DRY_BULK,PANAMAX,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,,
+P4_82,Hong Kong-South Korea trip to Skaw-Passero,DRY_BULK,PANAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Hong Kong,Skagen Havn
+P5_82,"South China, one Indonesian round voyage",DRY_BULK,PANAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Guangzhou,Balikpapan
+P6_82,Dely Singapore for one round voyage via Atlantic,DRY_BULK,PANAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Keppel - (East Singapore),Rotterdam
+P6,Panamax trip time charter route (P6; exchange/clearing shorthand),DRY_BULK,PANAMAX,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,,
+S1B,Canakkale trip via Med or Bl Sea to China-South Korea,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Canakkale,Busan
+S1C,US Gulf trip to China-south Japan,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Houston,Tokyo Ko
+S2,North China one Australian or Pacific round voyage,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Qingdao Gang,Newcastle
+S3,North China trip to West Africa,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Qingdao Gang,Bonny
+S4A,US Gulf trip to Skaw-Passero,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Houston,Rotterdam
+S4B,Skaw-Passero trip to US Gulf,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Rotterdam,Houston
+S5,West Africa trip via east coast South America to north China,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Bonny,Qingdao Gang
+S8,South China trip via Indonesia to east coast India,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Guangzhou,Chennai (Madras)
+S9,West Africa trip via east coast South America to Skaw-Passero,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Bonny,Rotterdam
+S10,South China trip via Indonesia to south China,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Guangzhou,Guangzhou
+S15,Indian Ocean trip via South Africa to the Far East,DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Durban,Tokyo Ko
+S1B_63,Canakkale trip via Med or Bl Sea to China-South Korea (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+S1C_63,US Gulf trip to China-south Japan (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+S2_63,North China one Australian or Pacific round voyage (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+S3_63,North China trip to West Africa (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+S4A_63,US Gulf trip to Skaw-Passero (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+S4B_63,Skaw-Passero trip to US Gulf (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+S5_63,West Africa trip via east coast South America to north China (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+S8_63,South China trip via Indonesia to east coast India (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+S9_63,West Africa trip via east coast South America to Skaw-Passero (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+S10_63,South China trip via Indonesia to south China (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+S15_63,Indian Ocean trip via South Africa to the Far East (BSI63),DRY_BULK,SUPRAMAX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+HS1_38,Skaw-Passero trip to Rio de Janeiro-Recalada,DRY_BULK,HANDYSIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Rotterdam,Rio De Janeiro
+HS2_38,Skaw-Passero trip to Boston-Galveston,DRY_BULK,HANDYSIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Rotterdam,Galveston
+HS3_38,Rio de Janeiro-Recalada trip to Skaw-Passero,DRY_BULK,HANDYSIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Rio De Janeiro,Rotterdam
+HS4_38,US Gulf trip via US Gulf or north coast South America to Skaw-Passero,DRY_BULK,HANDYSIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Houston,Rotterdam
+HS5_38,South East Asia trip to Singapore-Japan,DRY_BULK,HANDYSIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Keppel - (East Singapore),Tokyo Ko
+HS6_38,North China-South Korea-Japan trip to North China-South Korea-Japan,DRY_BULK,HANDYSIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Qingdao Gang,Tokyo Ko
+HS7_38,North China-South Korea-Japan trip to south east Asia,DRY_BULK,HANDYSIZE,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Qingdao Gang,Keppel - (East Singapore)
+TC1,"Middle East Gulf to Japan (CPP, UNL, naphtha condensate)",TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Mina Al Ahmadi,Tokyo Ko
+TC2_37,"Continent to US Atlantic coast (CPP, UNL)",TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Rotterdam,New York City
+TC2,"Continent to US Atlantic coast (CPP, UNL) (alias of TC2_37 used by some venues)",TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,Rotterdam,New York City
+TC5,"Middle East Gulf to Japan (CPP, UNL, naphtha condensate)",TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Mina Al Ahmadi,Tokyo Ko
+TC6,"Algeria to European Mediterranean (CPP, UNL)",TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Arzew,Augusta
+TC7,Singapore to east coast Australia (CPP),TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Keppel - (East Singapore),Newcastle
+TC8,"Middle East Gulf to UK-Cont. (CPP, UNL)",TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Mina Al Ahmadi,Rotterdam
+TC9,"Baltic to UK-Cont. (CPP, UNL, ULSD)",TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Gdansk,Rotterdam
+TC10,South Korea to NoPac west coast (CPP/UNL),TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Busan,Los Angeles
+TC11,South Korea to Singapore (CPP),TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Busan,Keppel - (East Singapore)
+TC12,Sikka (WCI) to Japan (naphtha),TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Sikka,Tokyo Ko
+TC14,"US Gulf to Continent (CPP, UNL, diesel)",TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Houston,Rotterdam
+TC15,Med / Far East (naphtha),TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Augusta,Tokyo Ko
+TC16,Amsterdam to offshore Lome (CPP),TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Amsterdam,Lome
+TC17,Middle East Gulf to East Africa,TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Mina Al Ahmadi,Mombasa
+TC18,US Gulf to Brazil,TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Houston,Rio De Janeiro
+TC23,ARA to UK Cont (Baltic) (venue/clearing contract),TANKERS,CLEAN,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,Antwerpen,Rotterdam
+TD2,Middle East Gulf to Singapore,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Mina Al Ahmadi,Keppel - (East Singapore)
+TD3C,Middle East Gulf to China,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Mina Al Ahmadi,Qingdao Gang
+TD6,Black Sea to Mediterranean,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Novorossiysk,Augusta
+TD7,North Sea to Continent,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Hound Point Terminal,Rotterdam
+TD8,Kuwait to Singapore (Crude/DPP heat 135F),TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Mina Al Ahmadi,Keppel - (East Singapore)
+TD9,Caribbean to US Gulf,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Kingston,Houston
+TD12,Amsterdam-Rotterdam-Antwerp to US Gulf,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Rotterdam,Houston
+TD14,South East Asia to east coast Australia,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Keppel - (East Singapore),Newcastle
+TD15,West Africa to China,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Bonny,Qingdao Gang
+TD17,Baltic to UK-Cont,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Primorsk,Rotterdam
+TD18,Baltic to UK-Cont,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Primorsk,Rotterdam
+TD19,Cross Mediterranean,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+TD20,West Africa to UK-Continent,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Bonny,Rotterdam
+TD21,"Caribbean to US Gulf (50,000mt fuel oil)",TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Kingston,Houston
+TD22,US Gulf to China (assessed in US $/lumpsum),TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Houston,Qingdao Gang
+TD23,Middle East Gulf to Mediterranean (Light Crude),TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Mina Al Ahmadi,Augusta
+TD24,Pacific Russia to China,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Vladivostok,Qingdao Gang
+TD25,US Gulf to A-R-A,TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Houston,Rotterdam
+TD26,Aframax route TD26 (used in Aframax TCE basket),TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+TD28,WC Canada to China (Baltic) (venue/clearing contract),TANKERS,DIRTY,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,Vancouver,Qingdao Gang
+BLNG1,Gladstone / Tokyo RV,GAS,LNG,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Gladstone,Tokyo Ko
+BLNG2,Sabine / UK Cont RV,GAS,LNG,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Sabine Pass,Rotterdam
+BLNG3,Sabine / Tokyo RV,GAS,LNG,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Sabine Pass,Tokyo Ko
+BLNG1g,Gladstone / Tokyo RV (BLNG1; venue/clearing contract code),GAS,LNG,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,Gladstone,Tokyo Ko
+BLNG2g,Sabine / UK Cont RV (BLNG2; venue/clearing contract code),GAS,LNG,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,Sabine Pass,Rotterdam
+BLNG3g,Sabine / Tokyo RV (BLNG3; venue/clearing contract code),GAS,LNG,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,Sabine Pass,Tokyo Ko
+BLPG1,Middle East Gulf to Japan,GAS,LPG,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BLPG2,US Gulf to Continent,GAS,LPG,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BLPG3,US Gulf to Japan,GAS,LPG,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+LPG1,Middle East Gulf to Japan (BLPG1; venue/clearing contract code),GAS,LPG,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,,
+LPG3,US Gulf to Japan (BLPG3; venue/clearing contract code),GAS,LPG,https://www.balticexchange.com/en/data-services/freight-derivatives-/Clearing.html,,
+FBX00,Global Container Index,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX01,China/East Asia to North America,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX02,North America West Coast to China/East Asia,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX03,China/East Asia to North America East Coast,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX04,North America East Coast to China/East Asia,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX11,China/East Asia to North Europe,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX12,North Europe to China/East Asia,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX13,China/East Asia to Mediterranean,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX14,Mediterranean to China/East Asia,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX21,North America East Coast to Europe,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX22,Europe to North America East Coast,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX24,Europe to South America East Coast,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+FBX26,Europe to South America West Coast,CONTAINERS,FBX,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI00,Baltic Air Freight Index,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI20,Frankfurt Outbound Index,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI30,Hong Kong Outbound Index,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI40,London Heathrow Outbound Index,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI50,"O'Hare Int'l, Chicago Outbound Index",AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI60,Singapore Outbound index,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI80,Shanghai Pudong Outbound Index,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI22,Frankfurt to North America,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI23,Frankfurt to South East Asia,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI24,Frankfurt to USA,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI25,Frankfurt to China,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI31,Hong Kong to Europe,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Hong Kong,
+BAI32,Hong Kong to North America,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Hong Kong,
+BAI33,Hong Kong to South East Asia,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Hong Kong,
+BAI34,Hong Kong to USA,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Hong Kong,
+BAI42,London Heathrow to North America,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI43,London Heathrow to South East Asia,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI44,London Heathrow to USA,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI51,"O'Hare Int'l, Chicago to Europe",AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI53,"O'Hare Int'l, Chicago to South East Asia",AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI63,Singapore to South East Asia,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,Keppel - (East Singapore),
+BAI81,Shanghai Pudong to Europe,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI82,Shanghai Pudong to North America,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
+BAI84,Shanghai Pudong to USA,AIR_FREIGHT,BAI,https://www.balticexchange.com/en/data-services/market-information0/indices.html,,
