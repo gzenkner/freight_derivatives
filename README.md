@@ -17,6 +17,10 @@ From the repo root:
 streamlit run streamlit/app.py
 ```
 
+![alt text](image.png)
+
+![alt text](image-1.png)
+
 The app expects the datasets under `datasets/` to exist and be readable.
 
 ## Data model (Mermaid → single HTML)
