@@ -265,11 +265,18 @@ def page_ffas() -> None:
     st.header("FFAs / Freight derivatives")
     st.markdown(
         """
-For beginners, the key idea is:
+**What an FFA is (plain English):** a *financial* contract that pays out based on a published freight assessment
+(a **route**) or a published aggregate (**index** / **basket**). No ship changes hands — it’s cash-settled.
 
-**A contract settles to an underlying** (route / index / basket).
+**Why FFAs exist:** the physical freight market is volatile. Shipowners and cargo interests use FFAs to **hedge**
+freight-rate risk, and traders use them to **take a view** on freight without chartering a vessel.
 
-Use the **Underlyings** view to see what’s actually being settled.
+**Key concept:** an FFA **settles** to an **underlying**:
+- **Route** underlying (e.g. `C5`, `S1B`): settles to a specific assessed lane/template.
+- **Index** underlying (e.g. `BDI`): settles to a published aggregate.
+- **Basket** underlying: settles to an average of several routes.
+
+Use the **Underlyings** view to see what contracts are actually settling to.
 """
     )
 
@@ -390,6 +397,71 @@ Use the **Underlyings** view to see what’s actually being settled.
                     url = r["website_url"]
                     lines.append(f"- [{name}]({url})" if url else f"- {name}")
                 st.markdown("\n".join(lines))
+
+    with st.expander("Worked example (painfully detailed): hedging a real freight exposure", expanded=False):
+        st.markdown(
+            """
+This is an **illustrative** (but realistic) dry-bulk hedging story using real companies. Numbers are simplified.
+
+### The real-world problem
+Imagine **BHP** is exporting iron ore from **Port Hedland (Australia)** to a steel mill customer in **China**.
+BHP doesn’t own enough ships for all liftings, so it charters **Capesize** vessels in the spot market.
+
+BHP’s risk is: *what if freight goes up between now and when the cargo loads?*
+- If **spot freight rises**, the delivered cost of ore rises (or BHP’s netback falls).
+- BHP wants **budget certainty** for a specific shipment month.
+
+### The observable “index” they hedge with
+In dry bulk, a common hedging underlying is a **Baltic route assessment** (a published number).
+A widely referenced Capesize route is **`C5`** (an iron-ore style route; published as an assessment).
+
+In practice, the exact unit depends on the contract (some are $/ton routes; others are TCE $/day style).
+The app’s `FFA_INSTRUMENTS` table captures the unit where available.
+
+### How the hedge is executed (step-by-step)
+1) **Physical exposure is defined**
+   - Shipment: 1 cargo, ~1 Capesize voyage, loading in (say) June.
+   - Exposure: freight cost moves with the market around the loading window.
+
+2) **Hedge instrument is chosen**
+   - BHP’s freight desk chooses an FFA contract that settles to **the same underlying** they care about
+     (e.g. a `C5`-style underlying for Capesize iron-ore economics).
+   - They execute via a broker (examples in this app: **Clarksons**, **FIS**, **GFI**, **SSY**, **Braemar**, etc.).
+
+3) **Position direction**
+   - If BHP is a **freight buyer** (they pay freight), they are hurt by **rates going up**.
+   - To hedge that, they take an FFA position that **profits when the index goes up**.
+     (Conceptually: *“long freight”* in the derivative.)
+
+4) **Clearing & margin (why it matters)**
+   - Many FFAs are cleared through a clearing house (e.g. **LCH**, **CME Clearing**, etc. depending on venue).
+   - Clearing means:
+     - **Initial margin** is posted.
+     - **Variation margin** flows as the market moves (daily or per clearing rules).
+   - This converts credit risk vs a counterparty into margining vs the clearer.
+
+5) **Settlement**
+   - At settlement, the contract pays based on the **published Baltic assessment** for the relevant period.
+
+### A toy P&L that shows the point
+Suppose BHP locks an FFA at **12.00** (same unit as the underlying), and the published settlement prints **13.00**.
+- The physical market moved *against* them: freight is **more expensive**.
+- The derivative pays them roughly **(13.00 − 12.00) × contract_size**.
+
+That FFA profit is used to **offset** the higher physical freight bill.
+
+### What can go wrong (the “noob traps”)
+- **Basis risk:** your physical route isn’t *exactly* the index route definition.
+- **Timing risk:** you load on June 3rd but the FFA settles on an average for a different window.
+- **Optionality:** if you have a charter party with unusual clauses (demurrage, speed, scrubber economics),
+  the index won’t capture that perfectly.
+- **Liquidity:** some routes/tenors trade a lot; some barely trade.
+- **Margining:** even a good hedge can require cash for variation margin when the market moves.
+
+If you tell me the *physical* trade you want to hedge (vessel class + route + month + “I pay” vs “I earn” freight),
+I can point to which underlyings in your `FFA_INSTRUMENTS` table are the closest match.
+"""
+        )
 
 
 def page_routes() -> None:
@@ -654,9 +726,7 @@ def page_reference() -> None:
 
 def page_data_model() -> None:
     st.header("Data model")
-    choice = st.radio("Graph", ["Indices", "FFAs"], horizontal=True)
-    target = "erd.html" if choice == "Indices" else "ffas_erd.html"
-    erd_html_path = PROJECT_DIR / "data_model" / target
+    erd_html_path = PROJECT_DIR / "data_model" / "erd.html"
     if not erd_html_path.exists():
         generate_py = PROJECT_DIR / "data_model/generate.py"
         if generate_py.exists():

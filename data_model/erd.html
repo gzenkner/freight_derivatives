@@ -6,211 +6,268 @@
     <title>Freight Derivatives — Data Model</title>
     <style>
       :root {
-        --bg: #0b1020;
-        --panel: #0f172a;
-        --text: #e5e7eb;
-        --muted: #9ca3af;
-        --border: rgba(255,255,255,0.10);
-        --code: #0b1224;
+        --bg: #f6f7fb;
+        --panel: #ffffff;
+        --text: #0f172a;
+        --muted: #475569;
+        --border: rgba(15,23,42,0.10);
+        --shadow: 0 10px 30px rgba(15,23,42,0.08);
+        --btn: #111827;
       }
+      * { box-sizing: border-box; }
       body {
         margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-        background: var(--bg);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
         color: var(--text);
+        background: var(--bg);
       }
       header {
-        padding: 18px 22px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        padding: 10px 14px;
         border-bottom: 1px solid var(--border);
-        background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+        background: rgba(255,255,255,0.85);
+        backdrop-filter: blur(10px);
+      }
+      header .title {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 240px;
       }
       header h1 {
-        font-size: 16px;
-        margin: 0 0 6px 0;
+        font-size: 14px;
+        margin: 0;
         font-weight: 650;
         letter-spacing: 0.2px;
       }
       header p {
         margin: 0;
+        font-size: 12px;
         color: var(--muted);
-        font-size: 13px;
-        line-height: 1.35;
+        line-height: 1.2;
+      }
+      .toolbar {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      button {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: var(--panel);
+        color: var(--btn);
+        padding: 7px 10px;
+        border-radius: 10px;
+        font-size: 12px;
+        cursor: pointer;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+      }
+      button:hover {
+        box-shadow: 0 6px 16px rgba(15,23,42,0.08);
       }
       main {
-        padding: 18px 22px 28px;
-        max-width: 1200px;
-        margin: 0 auto;
+        padding: 14px;
       }
-      .panel {
+      .grid {
+        display: grid;
+        grid-template-columns: 1.7fr 1fr;
+        gap: 12px;
+        height: calc(100vh - 74px);
+      }
+      .frame {
         background: var(--panel);
         border: 1px solid var(--border);
-        border-radius: 12px;
-        padding: 14px;
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        min-height: 0;
+      }
+      #diagram {
+        height: 100%;
+        width: 100%;
+        cursor: grab;
+      }
+      #diagram:active {
+        cursor: grabbing;
+      }
+      .side {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+      .side h2 {
+        margin: 0 0 10px;
+        font-size: 13px;
+        letter-spacing: 0.2px;
+      }
+      .side .hint {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.25;
+      }
+      .schema {
         overflow: auto;
+        padding: 10px;
+      }
+      .table {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .table header {
+        position: static;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        backdrop-filter: none;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .table header .name {
+        font-weight: 700;
+        font-size: 12px;
+      }
+      .table header .meta {
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.25;
+      }
+      .cols {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        font-size: 11px;
+      }
+      .cols th, .cols td {
+        text-align: left;
+        padding: 6px 6px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      .cols th {
+        color: var(--muted);
+        font-weight: 650;
+      }
+      .badge {
+        display: inline-block;
+        font-size: 10px;
+        padding: 1px 6px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        margin-left: 6px;
+        color: var(--muted);
+      }
+      .btn-link {
+        border: 0;
+        background: transparent;
+        padding: 6px 0 0;
+        color: #2563eb;
+        cursor: pointer;
+        font-size: 11px;
+      }
+      @media (max-width: 980px) {
+        .grid { grid-template-columns: 1fr; height: auto; }
+        .frame { height: 520px; }
       }
       details {
-        margin-top: 14px;
+        margin-top: 12px;
       }
       summary {
         cursor: pointer;
+        font-size: 12px;
         color: var(--muted);
-        font-size: 13px;
       }
       pre {
-        margin: 10px 0 0;
+        margin: 8px 0 0;
         padding: 12px;
-        background: var(--code);
         border: 1px solid var(--border);
-        border-radius: 10px;
+        border-radius: 12px;
+        background: #0b1220;
+        color: #e5e7eb;
         overflow: auto;
-        color: #d1d5db;
         font-size: 12px;
         line-height: 1.35;
       }
-      a {
-        color: #93c5fd;
-      }
     </style>
-    <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-      mermaid.initialize({
-        startOnLoad: true,
-        theme: "dark",
-        securityLevel: "loose",
-        er: { useMaxWidth: true },
-      });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
   </head>
   <body>
     <header>
-      <h1>Freight Derivatives — Data Model</h1>
-      <p>“dbdiagram-style” ERD rendered with Mermaid. Open this file in any browser.</p>
+      <div class="title">
+        <h1>Freight Derivatives — Data Model</h1>
+        <p>Mermaid ERD with pan/zoom (dbdiagram-like navigation).</p>
+      </div>
+      <div class="toolbar">
+        <button id="fit">Fit</button>
+        <button id="center">Center</button>
+        <button id="zin">Zoom in</button>
+        <button id="zout">Zoom out</button>
+        <button id="reset">Reset</button>
+      </div>
     </header>
     <main>
-      <div class="panel">
-        <div class="mermaid">
-erDiagram
-
-INDICES {
-  string index_code PK
-  string index_name
-  string market
-  string frequency
-  string description
-  string source_url
-}
-
-INDEX_TIMESERIES {
-  string index_code FK
-  date date
-  float close
-  float open
-  float high
-  float low
-}
-
-ROUTES {
-  string route_code PK
-  string short_description
-  string market
-  string segment
-  string port_of_embarkment
-  string port_of_arrival
-  string source_url
-}
-
-VESSEL_TYPES {
-  string vessel_type PK
-  string market
-  string segment
-  int dwt_mt
-  int max_age_years
-  string notes
-  string source_url
-}
-
-INDEX_COMPONENTS {
-  string index_code FK
-  string component_code
-  string component_type
-  string mode
-  float weight
-  float scale_factor
-  string source_url
-}
-
-CLEARING_CONTRACTS {
-  string clearing_house
-  string contract_code
-  string contract_name
-  string contract_type
-  string source_url
-}
-
-FFA_CONTRACTS {
-  string venue
-  string instrument_code PK
-  string contract_code
-  string contract_name
-  string product_type
-  string contract_variant
-  string underlying_kind
-  string underlying_code
-  string market
-  string segment
-  string unit
-  string currency
-  string source_url
-  string validation_search_url
-}
-
-FFA_BROKERS {
-  string broker_name PK
-  string market
-  string segment
-  string website_url
-  string approved_by
-}
-
-BASKETS {
-  string basket_code PK
-}
-
-INDICES ||--o{ INDEX_TIMESERIES : has
-
-INDICES ||--o{ INDEX_COMPONENTS : composed_of
-
-ROUTES ||--o{ INDEX_COMPONENTS : can_feed
-
-VESSEL_TYPES ||--o{ INDEX_COMPONENTS : specs
-
-CLEARING_CONTRACTS ||--o{ FFA_CONTRACTS : listed_as
-
-ROUTES ||--o{ FFA_CONTRACTS : settles_to
-
-INDICES ||--o{ FFA_CONTRACTS : settles_to
-
-BASKETS ||--o{ FFA_CONTRACTS : settles_to
-
-%% Sources in this repo:
-
-%% - datasets/exchange_reference/indices.csv (columns: index_code, index_name, market, frequency, description, source_url)
-
-%% - datasets/exchange_reference/routes.csv (columns: route_code, short_description, market, segment, source_url, port_of_embarkment, port_of_arrival)
-
-%% - datasets/exchange_reference/vessel_types.csv (columns: vessel_type, market, segment, dwt_mt, max_age_years, loa_m, beam_m, tpc)
-
-%% - datasets/exchange_reference/index_components.csv (columns: index_code, component_code, component_type, mode, weight, scale_factor, source_url)
-
-%% - datasets/ffas/clearing_contracts.csv (columns: clearing_house, contract_code, contract_name, contract_type, source_url)
-
-%% - datasets/ffas/ffa_instruments.csv (columns: venue, exchange_name, instrument_code, contract_code, contract_name, underlying_code, underlying_kind, market)
-
+      <div class="grid">
+        <div class="frame">
+          <div id="diagram" aria-label="ER diagram"></div>
+        </div>
+        <div class="frame side">
+          <div class="schema">
+            <h2>Tables</h2>
+            <p class="hint">The ERD shows up to 10 columns per table. Expand below to see full schemas (PK/FK included).</p>
+            <div id="schema"></div>
+          </div>
         </div>
       </div>
       <details>
-        <summary>Show Mermaid source</summary>
+        <summary>Show Mermaid source (diagram)</summary>
         <pre><code>erDiagram
+
+PORTS {
+  string main_port_name PK
+  string world_port_index_number
+  string country_code
+  string un_locode
+  string region_name
+  string world_water_body
+  string harbor_size
+  string publication_link
+  float latitude
+  float longitude
+  string …_100_more_columns
+}
+
+ROUTES {
+  string route_code PK
+  string short_description
+  string market
+  string segment
+  string source_url
+  string port_of_embarkment FK
+  string port_of_arrival FK
+}
+
+VESSEL_TYPES {
+  string vessel_type PK
+  string market
+  string segment
+  int dwt_mt
+  int max_age_years
+  float loa_m
+  float beam_m
+  float tpc
+  float grain_cbm
+  float bale_cbm
+  string …_2_more_columns
+}
 
 INDICES {
   string index_code PK
@@ -221,38 +278,9 @@ INDICES {
   string source_url
 }
 
-INDEX_TIMESERIES {
-  string index_code FK
-  date date
-  float close
-  float open
-  float high
-  float low
-}
-
-ROUTES {
-  string route_code PK
-  string short_description
-  string market
-  string segment
-  string port_of_embarkment
-  string port_of_arrival
-  string source_url
-}
-
-VESSEL_TYPES {
-  string vessel_type PK
-  string market
-  string segment
-  int dwt_mt
-  int max_age_years
-  string notes
-  string source_url
-}
-
 INDEX_COMPONENTS {
-  string index_code FK
-  string component_code
+  string index_code PK FK
+  string component_code PK
   string component_type
   string mode
   float weight
@@ -260,17 +288,42 @@ INDEX_COMPONENTS {
   string source_url
 }
 
+INDEX_CATALOG {
+  string index_id PK
+  string index_value_id
+  string index_short_name
+  string index_name
+  string isin
+  string detail_url
+  string history_url
+  string local_file
+  int rows
+  string status
+  string …_2_more_columns
+}
+
+INDEX_TIMESERIES {
+  string index_name PK FK
+  date date PK
+  float price
+  float open
+  float high
+  float low
+  string source_file
+}
+
 CLEARING_CONTRACTS {
-  string clearing_house
-  string contract_code
+  string clearing_house PK
+  string contract_code PK
   string contract_name
   string contract_type
   string source_url
 }
 
-FFA_CONTRACTS {
-  string venue
+FFA_INSTRUMENTS {
   string instrument_code PK
+  string venue
+  string exchange_name
   string contract_code
   string contract_name
   string product_type
@@ -278,11 +331,7 @@ FFA_CONTRACTS {
   string underlying_kind
   string underlying_code
   string market
-  string segment
-  string unit
-  string currency
-  string source_url
-  string validation_search_url
+  string …_15_more_columns
 }
 
 FFA_BROKERS {
@@ -291,46 +340,276 @@ FFA_BROKERS {
   string segment
   string website_url
   string approved_by
+  string notes
 }
 
-BASKETS {
-  string basket_code PK
-}
+PORTS ||--o{ ROUTES : embarkment
 
-INDICES ||--o{ INDEX_TIMESERIES : has
+PORTS ||--o{ ROUTES : arrival
 
 INDICES ||--o{ INDEX_COMPONENTS : composed_of
 
 ROUTES ||--o{ INDEX_COMPONENTS : can_feed
 
-VESSEL_TYPES ||--o{ INDEX_COMPONENTS : specs
+INDICES ||--o{ INDEX_COMPONENTS : can_feed
 
-CLEARING_CONTRACTS ||--o{ FFA_CONTRACTS : listed_as
+INDICES ||--o{ INDEX_TIMESERIES : has
 
-ROUTES ||--o{ FFA_CONTRACTS : settles_to
+ROUTES ||--o{ FFA_INSTRUMENTS : settles_to
 
-INDICES ||--o{ FFA_CONTRACTS : settles_to
+INDICES ||--o{ FFA_INSTRUMENTS : settles_to
 
-BASKETS ||--o{ FFA_CONTRACTS : settles_to
-
-%% Sources in this repo:
-
-%% - datasets/exchange_reference/indices.csv (columns: index_code, index_name, market, frequency, description, source_url)
-
-%% - datasets/exchange_reference/routes.csv (columns: route_code, short_description, market, segment, source_url, port_of_embarkment, port_of_arrival)
-
-%% - datasets/exchange_reference/vessel_types.csv (columns: vessel_type, market, segment, dwt_mt, max_age_years, loa_m, beam_m, tpc)
-
-%% - datasets/exchange_reference/index_components.csv (columns: index_code, component_code, component_type, mode, weight, scale_factor, source_url)
-
-%% - datasets/ffas/clearing_contracts.csv (columns: clearing_house, contract_code, contract_name, contract_type, source_url)
-
-%% - datasets/ffas/ffa_instruments.csv (columns: venue, exchange_name, instrument_code, contract_code, contract_name, underlying_code, underlying_kind, market)
+%% Tip: diagram shows max 10 columns per table; expand on the right for full schema.
 </code></pre>
       </details>
-      <p style="color:var(--muted);font-size:12px;margin-top:14px">
-        Note: some relationships are conditional in practice (e.g. FFA underlyings can be routes, indices, or baskets).
-      </p>
     </main>
+
+    <script id="schema-json" type="application/json">[{"name": "PORTS", "source": "datasets/exchange_reference/ports_world_port_index.csv", "description": "World Port Index reference data (trimmed in diagram; full schema expandable).", "columns": [{"name": "main_port_name", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "world_port_index_number", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "country_code", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "un_locode", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "region_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "world_water_body", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "harbor_size", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "publication_link", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "latitude", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "longitude", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "id", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "oid", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "alternate_port_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "iho_s_130_sea_area", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "sailing_direction_or_publication", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "standard_nautical_chart", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "iho_s_57_electronic_navigational_chart", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "iho_s_101_electronic_navigational_chart", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "digital_nautical_chart", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "tidal_range_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "entrance_width_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "channel_depth_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "anchorage_depth_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "cargo_pier_depth_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "oil_terminal_depth_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "liquified_natural_gas_terminal_depth_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "maximum_vessel_length_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "maximum_vessel_beam_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "maximum_vessel_draft_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "offshore_maximum_vessel_length_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "offshore_maximum_vessel_beam_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "offshore_maximum_vessel_draft_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "harbor_type", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "harbor_use", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "shelter_afforded", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "entrance_restriction_tide", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "entrance_restriction_heavy_swell", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "entrance_restriction_ice", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "entrance_restriction_other", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "overhead_limits", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "underkeel_clearance_management_system", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "good_holding_ground", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "turning_area", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "port_security", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "estimated_time_of_arrival_message", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "quarantine_pratique", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "quarantine_sanitation", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "quarantine_other", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "traffic_separation_scheme", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "vessel_traffic_service", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "first_port_of_entry", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "us_representative", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "pilotage_compulsory", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "pilotage_available", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "pilotage_local_assistance", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "pilotage_advisable", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "tugs_salvage", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "tugs_assistance", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_telephone", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_telefax", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_radio", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_radiotelephone", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_airport", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_rail", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "search_and_rescue", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "navarea", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_wharves", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_anchorage", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_dangerous_cargo_anchorage", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_med_mooring", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_beach_mooring", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_ice_mooring", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_ro_ro", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_solid_bulk", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_liquid_bulk", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_container", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_breakbulk", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_oil_terminal", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_lng_terminal", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_other", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "medical_facilities", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "garbage_disposal", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "chemical_holding_tank_disposal", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "degaussing", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "dirty_ballast_disposal", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "cranes_fixed", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "cranes_mobile", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "cranes_floating", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "cranes_container", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "lifts_100_tons", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "lifts_50_100_tons", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "lifts_25_49_tons", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "lifts_0_24_tons", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_longshoremen", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_electricity", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_steam", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_navigation_equipment", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_electrical_repair", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_ice_breaking", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_diving", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_provisions", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_potable_water", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_fuel_oil", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_diesel_oil", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_aviation_fuel", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_deck", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_engine", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "repairs", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "dry_dock", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "railway", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "ROUTES", "source": "datasets/exchange_reference/routes.csv", "description": "Baltic-style route definitions (assessed lane / trip templates).", "columns": [{"name": "route_code", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "short_description", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "market", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "segment", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "port_of_embarkment", "type": "string", "pk": false, "fk": true, "ref_table": "PORTS", "ref_col": "main_port_name"}, {"name": "port_of_arrival", "type": "string", "pk": false, "fk": true, "ref_table": "PORTS", "ref_col": "main_port_name"}]}, {"name": "VESSEL_TYPES", "source": "datasets/exchange_reference/vessel_types.csv", "description": "Reference vessel templates used by timecharter-style routes.", "columns": [{"name": "vessel_type", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "market", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "segment", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "dwt_mt", "type": "int", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "max_age_years", "type": "int", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "loa_m", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "beam_m", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "tpc", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "grain_cbm", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "bale_cbm", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "notes", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "INDICES", "source": "datasets/exchange_reference/indices.csv", "description": "Index reference table (published aggregates).", "columns": [{"name": "index_code", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "market", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "frequency", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "description", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "INDEX_COMPONENTS", "source": "datasets/exchange_reference/index_components.csv", "description": "How an index is composed from routes and/or other indices.", "columns": [{"name": "index_code", "type": "string", "pk": true, "fk": true, "ref_table": "INDICES", "ref_col": "index_code"}, {"name": "component_code", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "component_type", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "mode", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "weight", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "scale_factor", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "INDEX_CATALOG", "source": "datasets/indices/index_catalog.csv", "description": "Metadata and captured calculation snippets for indices.", "columns": [{"name": "index_id", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_value_id", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_short_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "isin", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "detail_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "history_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "local_file", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "rows", "type": "int", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "status", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "error", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "calculation", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "INDEX_TIMESERIES", "source": "datasets/indices/json/*", "description": "Time series values for published indices.", "columns": [{"name": "index_name", "type": "string", "pk": true, "fk": true, "ref_table": "INDICES", "ref_col": "index_name"}, {"name": "date", "type": "date", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "price", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "open", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "high", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "low", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_file", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "CLEARING_CONTRACTS", "source": "datasets/ffas/clearing_contracts.csv", "description": "Clearing lists (which underlying contracts a clearing house supports).", "columns": [{"name": "clearing_house", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_code", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_type", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "FFA_INSTRUMENTS", "source": "datasets/ffas/ffa_instruments.csv", "description": "Tradable freight derivatives instruments (contracts and options).", "columns": [{"name": "instrument_code", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "venue", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "exchange_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_code", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "product_type", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_variant", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "underlying_kind", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "underlying_code", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "market", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "segment", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "unit", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "currency", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "notes", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "validation_contract_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "validation_underlying_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "validation_search_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_id", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "isin", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "data_start_date", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "data_end_date", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "data_rows", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_file", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "FFA_BROKERS", "source": "datasets/exchange_reference/ffa_brokers.csv", "description": "Broker reference list (incl. Baltic-approved Forward Assessments brokers).", "columns": [{"name": "broker_name", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "market", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "segment", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "website_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "approved_by", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "notes", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}]</script>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+      const src = `erDiagram
+
+PORTS {
+  string main_port_name PK
+  string world_port_index_number
+  string country_code
+  string un_locode
+  string region_name
+  string world_water_body
+  string harbor_size
+  string publication_link
+  float latitude
+  float longitude
+  string …_100_more_columns
+}
+
+ROUTES {
+  string route_code PK
+  string short_description
+  string market
+  string segment
+  string source_url
+  string port_of_embarkment FK
+  string port_of_arrival FK
+}
+
+VESSEL_TYPES {
+  string vessel_type PK
+  string market
+  string segment
+  int dwt_mt
+  int max_age_years
+  float loa_m
+  float beam_m
+  float tpc
+  float grain_cbm
+  float bale_cbm
+  string …_2_more_columns
+}
+
+INDICES {
+  string index_code PK
+  string index_name
+  string market
+  string frequency
+  string description
+  string source_url
+}
+
+INDEX_COMPONENTS {
+  string index_code PK FK
+  string component_code PK
+  string component_type
+  string mode
+  float weight
+  float scale_factor
+  string source_url
+}
+
+INDEX_CATALOG {
+  string index_id PK
+  string index_value_id
+  string index_short_name
+  string index_name
+  string isin
+  string detail_url
+  string history_url
+  string local_file
+  int rows
+  string status
+  string …_2_more_columns
+}
+
+INDEX_TIMESERIES {
+  string index_name PK FK
+  date date PK
+  float price
+  float open
+  float high
+  float low
+  string source_file
+}
+
+CLEARING_CONTRACTS {
+  string clearing_house PK
+  string contract_code PK
+  string contract_name
+  string contract_type
+  string source_url
+}
+
+FFA_INSTRUMENTS {
+  string instrument_code PK
+  string venue
+  string exchange_name
+  string contract_code
+  string contract_name
+  string product_type
+  string contract_variant
+  string underlying_kind
+  string underlying_code
+  string market
+  string …_15_more_columns
+}
+
+FFA_BROKERS {
+  string broker_name PK
+  string market
+  string segment
+  string website_url
+  string approved_by
+  string notes
+}
+
+PORTS ||--o{ ROUTES : embarkment
+
+PORTS ||--o{ ROUTES : arrival
+
+INDICES ||--o{ INDEX_COMPONENTS : composed_of
+
+ROUTES ||--o{ INDEX_COMPONENTS : can_feed
+
+INDICES ||--o{ INDEX_COMPONENTS : can_feed
+
+INDICES ||--o{ INDEX_TIMESERIES : has
+
+ROUTES ||--o{ FFA_INSTRUMENTS : settles_to
+
+INDICES ||--o{ FFA_INSTRUMENTS : settles_to
+
+%% Tip: diagram shows max 10 columns per table; expand on the right for full schema.
+`.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&");
+      const schema = JSON.parse(document.getElementById("schema-json").textContent || "[]");
+
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: "loose",
+        theme: "default",
+        er: { useMaxWidth: false },
+        themeVariables: {
+          primaryColor: "#ffffff",
+          primaryBorderColor: "#cbd5e1",
+          primaryTextColor: "#0f172a",
+          lineColor: "#94a3b8",
+          tertiaryColor: "#f8fafc",
+        },
+      });
+
+      const container = document.getElementById("diagram");
+      const { svg } = await mermaid.render("erd", src);
+      container.innerHTML = svg;
+
+      const svgEl = container.querySelector("svg");
+      svgEl.setAttribute("width", "100%");
+      svgEl.setAttribute("height", "100%");
+
+      const panZoom = window.svgPanZoom(svgEl, {
+        zoomEnabled: true,
+        controlIconsEnabled: false,
+        fit: true,
+        center: true,
+        minZoom: 0.1,
+        maxZoom: 25,
+        zoomScaleSensitivity: 0.25,
+      });
+
+      const bind = (id, fn) => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("click", fn);
+      };
+
+      bind("fit", () => panZoom.fit());
+      bind("center", () => panZoom.center());
+      bind("zin", () => panZoom.zoomIn());
+      bind("zout", () => panZoom.zoomOut());
+      bind("reset", () => { panZoom.resetZoom(); panZoom.center(); });
+
+      const schemaRoot = document.getElementById("schema");
+      const renderTable = (t) => {
+        const wrap = document.createElement("section");
+        wrap.className = "table";
+
+        const head = document.createElement("header");
+        const name = document.createElement("div");
+        name.className = "name";
+        name.textContent = t.name;
+        head.appendChild(name);
+
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        const parts = [];
+        if (t.source) parts.push(t.source);
+        if (t.description) parts.push(t.description);
+        meta.textContent = parts.join(" — ");
+        head.appendChild(meta);
+        wrap.appendChild(head);
+
+        const table = document.createElement("table");
+        table.className = "cols";
+        table.innerHTML = `<thead><tr><th>Column</th><th>Type</th><th>Keys</th><th>References</th></tr></thead>`;
+        const body = document.createElement("tbody");
+        table.appendChild(body);
+        wrap.appendChild(table);
+
+        const rows = t.columns || [];
+        let expanded = false;
+        const draw = () => {
+          body.innerHTML = "";
+          const max = expanded ? rows.length : Math.min(rows.length, 10);
+          for (let i = 0; i < max; i++) {
+            const c = rows[i];
+            const tr = document.createElement("tr");
+            const keys = [];
+            if (c.pk) keys.push("PK");
+            if (c.fk) keys.push("FK");
+            const ref = (c.ref_table && c.ref_col) ? `${c.ref_table}.${c.ref_col}` : "";
+            tr.innerHTML = `<td><code>${c.name}</code></td><td>${c.type}</td><td>${keys.join(", ")}</td><td>${ref}</td>`;
+            body.appendChild(tr);
+          }
+        };
+        draw();
+
+        if (rows.length > 10) {
+          const btn = document.createElement("button");
+          btn.className = "btn-link";
+          btn.type = "button";
+          const update = () => {
+            btn.textContent = expanded ? "Show fewer columns" : `Show all columns (${rows.length})`;
+          };
+          update();
+          btn.addEventListener("click", () => {
+            expanded = !expanded;
+            update();
+            draw();
+          });
+          wrap.appendChild(btn);
+        }
+
+        return wrap;
+      };
+
+      schema.forEach((t) => schemaRoot.appendChild(renderTable(t)));
+    </script>
   </body>
 </html>

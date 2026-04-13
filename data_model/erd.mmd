@@ -1,5 +1,143 @@
 erDiagram
 
+PORTS {
+  string main_port_name PK
+  string world_port_index_number
+  string country_code
+  string un_locode
+  string region_name
+  string world_water_body
+  string harbor_size
+  string publication_link
+  float latitude
+  float longitude
+  string id
+  string oid
+  string alternate_port_name
+  string iho_s_130_sea_area
+  string sailing_direction_or_publication
+  string standard_nautical_chart
+  string iho_s_57_electronic_navigational_chart
+  string iho_s_101_electronic_navigational_chart
+  string digital_nautical_chart
+  string tidal_range_m
+  string entrance_width_m
+  string channel_depth_m
+  string anchorage_depth_m
+  string cargo_pier_depth_m
+  string oil_terminal_depth_m
+  string liquified_natural_gas_terminal_depth_m
+  string maximum_vessel_length_m
+  string maximum_vessel_beam_m
+  string maximum_vessel_draft_m
+  string offshore_maximum_vessel_length_m
+  string offshore_maximum_vessel_beam_m
+  string offshore_maximum_vessel_draft_m
+  string harbor_type
+  string harbor_use
+  string shelter_afforded
+  string entrance_restriction_tide
+  string entrance_restriction_heavy_swell
+  string entrance_restriction_ice
+  string entrance_restriction_other
+  string overhead_limits
+  string underkeel_clearance_management_system
+  string good_holding_ground
+  string turning_area
+  string port_security
+  string estimated_time_of_arrival_message
+  string quarantine_pratique
+  string quarantine_sanitation
+  string quarantine_other
+  string traffic_separation_scheme
+  string vessel_traffic_service
+  string first_port_of_entry
+  string us_representative
+  string pilotage_compulsory
+  string pilotage_available
+  string pilotage_local_assistance
+  string pilotage_advisable
+  string tugs_salvage
+  string tugs_assistance
+  string communications_telephone
+  string communications_telefax
+  string communications_radio
+  string communications_radiotelephone
+  string communications_airport
+  string communications_rail
+  string search_and_rescue
+  string navarea
+  string facilities_wharves
+  string facilities_anchorage
+  string facilities_dangerous_cargo_anchorage
+  string facilities_med_mooring
+  string facilities_beach_mooring
+  string facilities_ice_mooring
+  string facilities_ro_ro
+  string facilities_solid_bulk
+  string facilities_liquid_bulk
+  string facilities_container
+  string facilities_breakbulk
+  string facilities_oil_terminal
+  string facilities_lng_terminal
+  string facilities_other
+  string medical_facilities
+  string garbage_disposal
+  string chemical_holding_tank_disposal
+  string degaussing
+  string dirty_ballast_disposal
+  string cranes_fixed
+  string cranes_mobile
+  string cranes_floating
+  string cranes_container
+  string lifts_100_tons
+  string lifts_50_100_tons
+  string lifts_25_49_tons
+  string lifts_0_24_tons
+  string services_longshoremen
+  string services_electricity
+  string services_steam
+  string services_navigation_equipment
+  string services_electrical_repair
+  string services_ice_breaking
+  string services_diving
+  string supplies_provisions
+  string supplies_potable_water
+  string supplies_fuel_oil
+  string supplies_diesel_oil
+  string supplies_aviation_fuel
+  string supplies_deck
+  string supplies_engine
+  string repairs
+  string dry_dock
+  string railway
+}
+
+ROUTES {
+  string route_code PK
+  string short_description
+  string market
+  string segment
+  string source_url
+  string port_of_embarkment FK
+  string port_of_arrival FK
+}
+
+VESSEL_TYPES {
+  string vessel_type PK
+  string market
+  string segment
+  int dwt_mt
+  int max_age_years
+  float loa_m
+  float beam_m
+  float tpc
+  float grain_cbm
+  float bale_cbm
+  string notes
+  string source_url
+}
+
 INDICES {
   string index_code PK
   string index_name
@@ -9,38 +147,9 @@ INDICES {
   string source_url
 }
 
-INDEX_TIMESERIES {
-  string index_code FK
-  date date
-  float close
-  float open
-  float high
-  float low
-}
-
-ROUTES {
-  string route_code PK
-  string short_description
-  string market
-  string segment
-  string port_of_embarkment
-  string port_of_arrival
-  string source_url
-}
-
-VESSEL_TYPES {
-  string vessel_type PK
-  string market
-  string segment
-  int dwt_mt
-  int max_age_years
-  string notes
-  string source_url
-}
-
 INDEX_COMPONENTS {
-  string index_code FK
-  string component_code
+  string index_code PK FK
+  string component_code PK
   string component_type
   string mode
   float weight
@@ -48,17 +157,43 @@ INDEX_COMPONENTS {
   string source_url
 }
 
+INDEX_CATALOG {
+  string index_id PK
+  string index_value_id
+  string index_short_name
+  string index_name
+  string isin
+  string detail_url
+  string history_url
+  string local_file
+  int rows
+  string status
+  string error
+  string calculation
+}
+
+INDEX_TIMESERIES {
+  string index_name PK FK
+  date date PK
+  float price
+  float open
+  float high
+  float low
+  string source_file
+}
+
 CLEARING_CONTRACTS {
-  string clearing_house
-  string contract_code
+  string clearing_house PK
+  string contract_code PK
   string contract_name
   string contract_type
   string source_url
 }
 
-FFA_CONTRACTS {
-  string venue
+FFA_INSTRUMENTS {
   string instrument_code PK
+  string venue
+  string exchange_name
   string contract_code
   string contract_name
   string product_type
@@ -69,8 +204,18 @@ FFA_CONTRACTS {
   string segment
   string unit
   string currency
+  string notes
   string source_url
+  string validation_contract_url
+  string validation_underlying_url
   string validation_search_url
+  string index_id
+  string index_name
+  string isin
+  string data_start_date
+  string data_end_date
+  string data_rows
+  string source_file
 }
 
 FFA_BROKERS {
@@ -79,38 +224,23 @@ FFA_BROKERS {
   string segment
   string website_url
   string approved_by
+  string notes
 }
 
-BASKETS {
-  string basket_code PK
-}
+PORTS ||--o{ ROUTES : embarkment
 
-INDICES ||--o{ INDEX_TIMESERIES : has
+PORTS ||--o{ ROUTES : arrival
 
 INDICES ||--o{ INDEX_COMPONENTS : composed_of
 
 ROUTES ||--o{ INDEX_COMPONENTS : can_feed
 
-VESSEL_TYPES ||--o{ INDEX_COMPONENTS : specs
+INDICES ||--o{ INDEX_COMPONENTS : can_feed
 
-CLEARING_CONTRACTS ||--o{ FFA_CONTRACTS : listed_as
+INDICES ||--o{ INDEX_TIMESERIES : has
 
-ROUTES ||--o{ FFA_CONTRACTS : settles_to
+ROUTES ||--o{ FFA_INSTRUMENTS : settles_to
 
-INDICES ||--o{ FFA_CONTRACTS : settles_to
+INDICES ||--o{ FFA_INSTRUMENTS : settles_to
 
-BASKETS ||--o{ FFA_CONTRACTS : settles_to
-
-%% Sources in this repo:
-
-%% - datasets/exchange_reference/indices.csv (columns: index_code, index_name, market, frequency, description, source_url)
-
-%% - datasets/exchange_reference/routes.csv (columns: route_code, short_description, market, segment, source_url, port_of_embarkment, port_of_arrival)
-
-%% - datasets/exchange_reference/vessel_types.csv (columns: vessel_type, market, segment, dwt_mt, max_age_years, loa_m, beam_m, tpc)
-
-%% - datasets/exchange_reference/index_components.csv (columns: index_code, component_code, component_type, mode, weight, scale_factor, source_url)
-
-%% - datasets/ffas/clearing_contracts.csv (columns: clearing_house, contract_code, contract_name, contract_type, source_url)
-
-%% - datasets/ffas/ffa_instruments.csv (columns: venue, exchange_name, instrument_code, contract_code, contract_name, underlying_code, underlying_kind, market)
+%% Tip: diagram shows full schemas (used by the right-hand panel).
