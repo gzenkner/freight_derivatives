@@ -36,7 +36,7 @@ Outputs:
 - `data_model/erd.mmd` — Mermaid source (full schemas).
 
 The Streamlit “Data model” page will auto-generate `data_model/erd.html` if it’s missing.
-
+![alt text](image-3.png)
 ## Notes
 
 - This is educational software, not trading advice.

@@ -6,13 +6,28 @@
     <title>Freight Derivatives — Data Model</title>
     <style>
       :root {
-        --bg: #f6f7fb;
-        --panel: #ffffff;
-        --text: #0f172a;
-        --muted: #475569;
-        --border: rgba(15,23,42,0.10);
-        --shadow: 0 10px 30px rgba(15,23,42,0.08);
-        --btn: #111827;
+        color-scheme: dark;
+        /* Pure black + white text */
+        --bg: #000000;
+        --panel: #000000;
+        --text: #ffffff;
+        --muted: rgba(255,255,255,0.82);
+        --border: rgba(255,255,255,0.35);
+        --shadow: none;
+        --btn: var(--text);
+        --header-bg: rgba(0,0,0,0.92);
+        --header-border: var(--border);
+        --btn-bg: #000000;
+        --btn-border: rgba(255,255,255,0.60);
+        --btn-shadow: none;
+        --btn-shadow-hover: none;
+        --link: var(--text);
+        --code-bg: #000000;
+        --code-text: var(--text);
+        --row-alt: #000000;
+        --row-hover: #000000;
+        --inline-code-bg: #000000;
+        --inline-code-text: var(--text);
       }
       * { box-sizing: border-box; }
       body {
@@ -29,8 +44,8 @@
         gap: 14px;
         align-items: center;
         padding: 10px 14px;
-        border-bottom: 1px solid var(--border);
-        background: rgba(255,255,255,0.85);
+        border-bottom: 1px solid var(--header-border);
+        background: var(--header-bg);
         backdrop-filter: blur(10px);
       }
       header .title {
@@ -59,17 +74,17 @@
       }
       button {
         appearance: none;
-        border: 1px solid var(--border);
-        background: var(--panel);
+        border: 1px solid var(--btn-border);
+        background: var(--btn-bg);
         color: var(--btn);
         padding: 7px 10px;
         border-radius: 10px;
         font-size: 12px;
         cursor: pointer;
-        box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+        box-shadow: var(--btn-shadow);
       }
       button:hover {
-        box-shadow: 0 6px 16px rgba(15,23,42,0.08);
+        box-shadow: var(--btn-shadow-hover);
       }
       main {
         padding: 14px;
@@ -152,10 +167,24 @@
         padding: 6px 6px;
         border-bottom: 1px solid var(--border);
         vertical-align: top;
+        background: transparent;
       }
       .cols th {
         color: var(--muted);
         font-weight: 650;
+      }
+      .cols tbody tr,
+      .cols tbody tr:nth-child(odd),
+      .cols tbody tr:hover {
+        background: transparent;
+      }
+      code {
+        padding: 2px 6px;
+        border-radius: 8px;
+        background: var(--inline-code-bg);
+        color: var(--inline-code-text);
+        border: 1px solid var(--border);
+        font-size: 11px;
       }
       .badge {
         display: inline-block;
@@ -170,7 +199,9 @@
         border: 0;
         background: transparent;
         padding: 6px 0 0;
-        color: #2563eb;
+        color: var(--link);
+        text-decoration: underline;
+        text-underline-offset: 2px;
         cursor: pointer;
         font-size: 11px;
       }
@@ -191,14 +222,33 @@
         padding: 12px;
         border: 1px solid var(--border);
         border-radius: 12px;
-        background: #0b1220;
-        color: #e5e7eb;
+        background: var(--code-bg);
+        color: var(--code-text);
         overflow: auto;
         font-size: 12px;
         line-height: 1.35;
       }
+      /* Mermaid SVG tweaks */
+      #diagram svg {
+        background: transparent !important;
+      }
+      /* Force dark greys + no zebra striping in the diagram */
+      #diagram svg [class*="entityBox"] {
+        fill: #000000 !important;
+        stroke: #ffffff !important;
+      }
+      #diagram svg [class*="attributeBox"] {
+        fill: #000000 !important;
+      }
+      #diagram svg [class*="relationshipLine"] {
+        stroke: #ffffff !important;
+      }
+      #diagram svg text {
+        fill: var(--text) !important;
+      }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
   </head>
   <body>
     <header>
@@ -242,7 +292,7 @@ PORTS {
   string publication_link
   float latitude
   float longitude
-  string …_100_more_columns
+  string c_100_more_columns
 }
 
 ROUTES {
@@ -266,7 +316,7 @@ VESSEL_TYPES {
   float tpc
   float grain_cbm
   float bale_cbm
-  string …_2_more_columns
+  string c_2_more_columns
 }
 
 INDICES {
@@ -279,7 +329,7 @@ INDICES {
 }
 
 INDEX_COMPONENTS {
-  string index_code PK FK
+  string index_code PK
   string component_code PK
   string component_type
   string mode
@@ -299,11 +349,11 @@ INDEX_CATALOG {
   string local_file
   int rows
   string status
-  string …_2_more_columns
+  string c_2_more_columns
 }
 
 INDEX_TIMESERIES {
-  string index_name PK FK
+  string index_name PK
   date date PK
   float price
   float open
@@ -331,7 +381,7 @@ FFA_INSTRUMENTS {
   string underlying_kind
   string underlying_code
   string market
-  string …_15_more_columns
+  string c_15_more_columns
 }
 
 FFA_BROKERS {
@@ -365,9 +415,8 @@ INDICES ||--o{ FFA_INSTRUMENTS : settles_to
     </main>
 
     <script id="schema-json" type="application/json">[{"name": "PORTS", "source": "datasets/exchange_reference/ports_world_port_index.csv", "description": "World Port Index reference data (trimmed in diagram; full schema expandable).", "columns": [{"name": "main_port_name", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "world_port_index_number", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "country_code", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "un_locode", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "region_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "world_water_body", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "harbor_size", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "publication_link", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "latitude", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "longitude", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "id", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "oid", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "alternate_port_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "iho_s_130_sea_area", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "sailing_direction_or_publication", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "standard_nautical_chart", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "iho_s_57_electronic_navigational_chart", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "iho_s_101_electronic_navigational_chart", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "digital_nautical_chart", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "tidal_range_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "entrance_width_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "channel_depth_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "anchorage_depth_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "cargo_pier_depth_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "oil_terminal_depth_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "liquified_natural_gas_terminal_depth_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "maximum_vessel_length_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "maximum_vessel_beam_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "maximum_vessel_draft_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "offshore_maximum_vessel_length_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "offshore_maximum_vessel_beam_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "offshore_maximum_vessel_draft_m", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "harbor_type", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "harbor_use", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "shelter_afforded", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "entrance_restriction_tide", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "entrance_restriction_heavy_swell", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "entrance_restriction_ice", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "entrance_restriction_other", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "overhead_limits", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "underkeel_clearance_management_system", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "good_holding_ground", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "turning_area", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "port_security", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "estimated_time_of_arrival_message", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "quarantine_pratique", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "quarantine_sanitation", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "quarantine_other", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "traffic_separation_scheme", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "vessel_traffic_service", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "first_port_of_entry", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "us_representative", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "pilotage_compulsory", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "pilotage_available", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "pilotage_local_assistance", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "pilotage_advisable", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "tugs_salvage", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "tugs_assistance", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_telephone", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_telefax", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_radio", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_radiotelephone", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_airport", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "communications_rail", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "search_and_rescue", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "navarea", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_wharves", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_anchorage", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_dangerous_cargo_anchorage", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_med_mooring", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_beach_mooring", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_ice_mooring", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_ro_ro", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_solid_bulk", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_liquid_bulk", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_container", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_breakbulk", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_oil_terminal", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_lng_terminal", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "facilities_other", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "medical_facilities", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "garbage_disposal", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "chemical_holding_tank_disposal", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "degaussing", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "dirty_ballast_disposal", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "cranes_fixed", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "cranes_mobile", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "cranes_floating", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "cranes_container", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "lifts_100_tons", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "lifts_50_100_tons", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "lifts_25_49_tons", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "lifts_0_24_tons", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_longshoremen", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_electricity", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_steam", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_navigation_equipment", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_electrical_repair", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_ice_breaking", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "services_diving", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_provisions", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_potable_water", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_fuel_oil", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_diesel_oil", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_aviation_fuel", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_deck", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "supplies_engine", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "repairs", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "dry_dock", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "railway", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "ROUTES", "source": "datasets/exchange_reference/routes.csv", "description": "Baltic-style route definitions (assessed lane / trip templates).", "columns": [{"name": "route_code", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "short_description", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "market", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "segment", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "port_of_embarkment", "type": "string", "pk": false, "fk": true, "ref_table": "PORTS", "ref_col": "main_port_name"}, {"name": "port_of_arrival", "type": "string", "pk": false, "fk": true, "ref_table": "PORTS", "ref_col": "main_port_name"}]}, {"name": "VESSEL_TYPES", "source": "datasets/exchange_reference/vessel_types.csv", "description": "Reference vessel templates used by timecharter-style routes.", "columns": [{"name": "vessel_type", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "market", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "segment", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "dwt_mt", "type": "int", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "max_age_years", "type": "int", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "loa_m", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "beam_m", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "tpc", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "grain_cbm", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "bale_cbm", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "notes", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "INDICES", "source": "datasets/exchange_reference/indices.csv", "description": "Index reference table (published aggregates).", "columns": [{"name": "index_code", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "market", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "frequency", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "description", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "INDEX_COMPONENTS", "source": "datasets/exchange_reference/index_components.csv", "description": "How an index is composed from routes and/or other indices.", "columns": [{"name": "index_code", "type": "string", "pk": true, "fk": true, "ref_table": "INDICES", "ref_col": "index_code"}, {"name": "component_code", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "component_type", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "mode", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "weight", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "scale_factor", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "INDEX_CATALOG", "source": "datasets/indices/index_catalog.csv", "description": "Metadata and captured calculation snippets for indices.", "columns": [{"name": "index_id", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_value_id", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_short_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "isin", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "detail_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "history_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "local_file", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "rows", "type": "int", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "status", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "error", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "calculation", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "INDEX_TIMESERIES", "source": "datasets/indices/json/*", "description": "Time series values for published indices.", "columns": [{"name": "index_name", "type": "string", "pk": true, "fk": true, "ref_table": "INDICES", "ref_col": "index_name"}, {"name": "date", "type": "date", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "price", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "open", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "high", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "low", "type": "float", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_file", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "CLEARING_CONTRACTS", "source": "datasets/ffas/clearing_contracts.csv", "description": "Clearing lists (which underlying contracts a clearing house supports).", "columns": [{"name": "clearing_house", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_code", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_type", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "FFA_INSTRUMENTS", "source": "datasets/ffas/ffa_instruments.csv", "description": "Tradable freight derivatives instruments (contracts and options).", "columns": [{"name": "instrument_code", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "venue", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "exchange_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_code", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "product_type", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "contract_variant", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "underlying_kind", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "underlying_code", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "market", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "segment", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "unit", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "currency", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "notes", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "validation_contract_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "validation_underlying_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "validation_search_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_id", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "index_name", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "isin", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "data_start_date", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "data_end_date", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "data_rows", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "source_file", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}, {"name": "FFA_BROKERS", "source": "datasets/exchange_reference/ffa_brokers.csv", "description": "Broker reference list (incl. Baltic-approved Forward Assessments brokers).", "columns": [{"name": "broker_name", "type": "string", "pk": true, "fk": false, "ref_table": null, "ref_col": null}, {"name": "market", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "segment", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "website_url", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "approved_by", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}, {"name": "notes", "type": "string", "pk": false, "fk": false, "ref_table": null, "ref_col": null}]}]</script>
-    <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-
+    <script>
+    (async () => {
       const src = `erDiagram
 
 PORTS {
@@ -381,7 +430,7 @@ PORTS {
   string publication_link
   float latitude
   float longitude
-  string …_100_more_columns
+  string c_100_more_columns
 }
 
 ROUTES {
@@ -405,7 +454,7 @@ VESSEL_TYPES {
   float tpc
   float grain_cbm
   float bale_cbm
-  string …_2_more_columns
+  string c_2_more_columns
 }
 
 INDICES {
@@ -418,7 +467,7 @@ INDICES {
 }
 
 INDEX_COMPONENTS {
-  string index_code PK FK
+  string index_code PK
   string component_code PK
   string component_type
   string mode
@@ -438,11 +487,11 @@ INDEX_CATALOG {
   string local_file
   int rows
   string status
-  string …_2_more_columns
+  string c_2_more_columns
 }
 
 INDEX_TIMESERIES {
-  string index_name PK FK
+  string index_name PK
   date date PK
   float price
   float open
@@ -470,7 +519,7 @@ FFA_INSTRUMENTS {
   string underlying_kind
   string underlying_code
   string market
-  string …_15_more_columns
+  string c_15_more_columns
 }
 
 FFA_BROKERS {
@@ -502,29 +551,55 @@ INDICES ||--o{ FFA_INSTRUMENTS : settles_to
 `.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&");
       const schema = JSON.parse(document.getElementById("schema-json").textContent || "[]");
 
+      const container = document.getElementById("diagram");
+      const showError = (title, err) => {
+        const msg = String(err && (err.stack || err.message) ? (err.stack || err.message) : err);
+        container.innerHTML = `<div style="padding:14px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace; font-size:12px; color: var(--muted);">
+          <div style="font-weight:650; margin-bottom:6px;">${title}</div>
+          <div style="white-space:pre-wrap; border:1px solid var(--border); background: var(--code-bg); color: var(--code-text); padding:10px; border-radius:10px;">${msg}</div>
+        </div>`;
+      };
+
+      const mermaid = window.mermaid;
+      if (!mermaid) {
+        showError("Mermaid failed to load", "CDN script did not populate window.mermaid.");
+        return;
+      }
+
       mermaid.initialize({
         startOnLoad: false,
         securityLevel: "loose",
-        theme: "default",
+        theme: "base",
         er: { useMaxWidth: false },
         themeVariables: {
-          primaryColor: "#ffffff",
-          primaryBorderColor: "#cbd5e1",
-          primaryTextColor: "#0f172a",
-          lineColor: "#94a3b8",
-          tertiaryColor: "#f8fafc",
+          background: "#000000",
+          mainBkg: "#000000",
+          primaryColor: "#000000",
+          secondaryColor: "#000000",
+          tertiaryColor: "#000000",
+          primaryBorderColor: "#ffffff",
+          primaryTextColor: "#ffffff",
+          textColor: "#ffffff",
+          lineColor: "#ffffff",
         },
       });
 
-      const container = document.getElementById("diagram");
-      const { svg } = await mermaid.render("erd", src);
-      container.innerHTML = svg;
+      try {
+        const { svg } = await mermaid.render("erd", src);
+        container.innerHTML = svg;
+      } catch (e) {
+        showError("Mermaid render failed", e);
+        throw e;
+      }
 
       const svgEl = container.querySelector("svg");
+      if (!svgEl) {
+        throw new Error("Rendered diagram did not produce an <svg> element.");
+      }
       svgEl.setAttribute("width", "100%");
       svgEl.setAttribute("height", "100%");
 
-      const panZoom = window.svgPanZoom(svgEl, {
+      const panZoom = window.svgPanZoom ? window.svgPanZoom(svgEl, {
         zoomEnabled: true,
         controlIconsEnabled: false,
         fit: true,
@@ -532,18 +607,20 @@ INDICES ||--o{ FFA_INSTRUMENTS : settles_to
         minZoom: 0.1,
         maxZoom: 25,
         zoomScaleSensitivity: 0.25,
-      });
+      }) : null;
 
       const bind = (id, fn) => {
         const el = document.getElementById(id);
         if (el) el.addEventListener("click", fn);
       };
 
-      bind("fit", () => panZoom.fit());
-      bind("center", () => panZoom.center());
-      bind("zin", () => panZoom.zoomIn());
-      bind("zout", () => panZoom.zoomOut());
-      bind("reset", () => { panZoom.resetZoom(); panZoom.center(); });
+      if (panZoom) {
+        bind("fit", () => panZoom.fit());
+        bind("center", () => panZoom.center());
+        bind("zin", () => panZoom.zoomIn());
+        bind("zout", () => panZoom.zoomOut());
+        bind("reset", () => { panZoom.resetZoom(); panZoom.center(); });
+      }
 
       const schemaRoot = document.getElementById("schema");
       const renderTable = (t) => {
@@ -610,6 +687,10 @@ INDICES ||--o{ FFA_INSTRUMENTS : settles_to
       };
 
       schema.forEach((t) => schemaRoot.appendChild(renderTable(t)));
+    })().catch((e) => {
+      const container = document.getElementById("diagram");
+      if (container) container.textContent = String(e);
+    });
     </script>
   </body>
 </html>

@@ -90,19 +90,19 @@ def load_ports(world_ports_path: str) -> pd.DataFrame:
     ).astype(float)
 
     harbor_size_colors = {
-        "Very Small": "#6a3d9a",
-        "Small": "#33a02c",
-        "Medium": "#ff7f00",
-        "Large": "#e31a1c",
+        "Very Small": "#ffffff",
+        "Small": "#ffffff",
+        "Medium": "#ffffff",
+        "Large": "#ffffff",
     }
     df_ports["port_color"] = (
-        df_ports["Harbor Size"].astype(str).str.strip().map(harbor_size_colors).fillna("#cccccc")
+        df_ports["Harbor Size"].astype(str).str.strip().map(harbor_size_colors).fillna("#ffffff")
     )
     df_ports["port_color_rgba"] = df_ports["port_color"].apply(
         lambda c: (
             [int(c[1:3], 16), int(c[3:5], 16), int(c[5:7], 16), 160]
             if isinstance(c, str) and c.startswith("#") and len(c) == 7
-            else [204, 204, 204, 160]
+            else [255, 255, 255, 160]
         )
     )
 
@@ -145,5 +145,3 @@ def load_dataframes(
     df_exchanges = load_exchanges(exchanges_path)
 
     return df_bdi, df_vessels, df_ports, df_indices, df_baltic_routes, df_exchanges
-
-

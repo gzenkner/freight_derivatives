@@ -37,18 +37,33 @@ _SANITIZE_RE = re.compile(r"[^a-zA-Z0-9_]+")
 def _sanitize_column(raw: str) -> str:
     raw = raw.replace("\ufeff", "").strip()
     out = _SANITIZE_RE.sub("_", raw).strip("_").lower()
-    return out or "col"
+    if not out:
+        return "col"
+    if out[0].isdigit():
+        return f"c_{out}"
+    return out
+
+
+def _mermaid_ident(name: str) -> str:
+    name = _SANITIZE_RE.sub("_", name).strip("_")
+    if not name:
+        return "col"
+    if name[0].isdigit():
+        name = f"c_{name}"
+    return name
 
 
 def _tbl_mermaid(table: Table, cols: list[Column]) -> str:
     lines = [f"{table.name} {{"]
     for c in cols:
         suffix = ""
+        # Mermaid ERD does not allow multiple attribute keys (e.g. "PK FK") on a single field.
+        # Prefer showing PK in the diagram; FK details are still captured in the expandable schema panel.
         if c.pk:
-            suffix += " PK"
-        if c.fk:
-            suffix += " FK"
-        lines.append(f"  {c.typ} {c.name}{suffix}")
+            suffix = " PK"
+        elif c.fk:
+            suffix = " FK"
+        lines.append(f"  {c.typ} {_mermaid_ident(c.name)}{suffix}")
     lines.append("}")
     return "\n".join(lines)
 
@@ -358,13 +373,28 @@ def build_html(mermaid_src: str, schema: list[dict]) -> str:
     <title>Freight Derivatives — Data Model</title>
     <style>
       :root {{
-        --bg: #f6f7fb;
-        --panel: #ffffff;
-        --text: #0f172a;
-        --muted: #475569;
-        --border: rgba(15,23,42,0.10);
-        --shadow: 0 10px 30px rgba(15,23,42,0.08);
-        --btn: #111827;
+        color-scheme: dark;
+        /* Pure black + white text */
+        --bg: #000000;
+        --panel: #000000;
+        --text: #ffffff;
+        --muted: rgba(255,255,255,0.82);
+        --border: rgba(255,255,255,0.35);
+        --shadow: none;
+        --btn: var(--text);
+        --header-bg: rgba(0,0,0,0.92);
+        --header-border: var(--border);
+        --btn-bg: #000000;
+        --btn-border: rgba(255,255,255,0.60);
+        --btn-shadow: none;
+        --btn-shadow-hover: none;
+        --link: var(--text);
+        --code-bg: #000000;
+        --code-text: var(--text);
+        --row-alt: #000000;
+        --row-hover: #000000;
+        --inline-code-bg: #000000;
+        --inline-code-text: var(--text);
       }}
       * {{ box-sizing: border-box; }}
       body {{
@@ -381,8 +411,8 @@ def build_html(mermaid_src: str, schema: list[dict]) -> str:
         gap: 14px;
         align-items: center;
         padding: 10px 14px;
-        border-bottom: 1px solid var(--border);
-        background: rgba(255,255,255,0.85);
+        border-bottom: 1px solid var(--header-border);
+        background: var(--header-bg);
         backdrop-filter: blur(10px);
       }}
       header .title {{
@@ -411,17 +441,17 @@ def build_html(mermaid_src: str, schema: list[dict]) -> str:
       }}
       button {{
         appearance: none;
-        border: 1px solid var(--border);
-        background: var(--panel);
+        border: 1px solid var(--btn-border);
+        background: var(--btn-bg);
         color: var(--btn);
         padding: 7px 10px;
         border-radius: 10px;
         font-size: 12px;
         cursor: pointer;
-        box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+        box-shadow: var(--btn-shadow);
       }}
       button:hover {{
-        box-shadow: 0 6px 16px rgba(15,23,42,0.08);
+        box-shadow: var(--btn-shadow-hover);
       }}
       main {{
         padding: 14px;
@@ -504,10 +534,24 @@ def build_html(mermaid_src: str, schema: list[dict]) -> str:
         padding: 6px 6px;
         border-bottom: 1px solid var(--border);
         vertical-align: top;
+        background: transparent;
       }}
       .cols th {{
         color: var(--muted);
         font-weight: 650;
+      }}
+      .cols tbody tr,
+      .cols tbody tr:nth-child(odd),
+      .cols tbody tr:hover {{
+        background: transparent;
+      }}
+      code {{
+        padding: 2px 6px;
+        border-radius: 8px;
+        background: var(--inline-code-bg);
+        color: var(--inline-code-text);
+        border: 1px solid var(--border);
+        font-size: 11px;
       }}
       .badge {{
         display: inline-block;
@@ -522,7 +566,9 @@ def build_html(mermaid_src: str, schema: list[dict]) -> str:
         border: 0;
         background: transparent;
         padding: 6px 0 0;
-        color: #2563eb;
+        color: var(--link);
+        text-decoration: underline;
+        text-underline-offset: 2px;
         cursor: pointer;
         font-size: 11px;
       }}
@@ -543,14 +589,33 @@ def build_html(mermaid_src: str, schema: list[dict]) -> str:
         padding: 12px;
         border: 1px solid var(--border);
         border-radius: 12px;
-        background: #0b1220;
-        color: #e5e7eb;
+        background: var(--code-bg);
+        color: var(--code-text);
         overflow: auto;
         font-size: 12px;
         line-height: 1.35;
       }}
+      /* Mermaid SVG tweaks */
+      #diagram svg {{
+        background: transparent !important;
+      }}
+      /* Force dark greys + no zebra striping in the diagram */
+      #diagram svg [class*="entityBox"] {{
+        fill: #000000 !important;
+        stroke: #ffffff !important;
+      }}
+      #diagram svg [class*="attributeBox"] {{
+        fill: #000000 !important;
+      }}
+      #diagram svg [class*="relationshipLine"] {{
+        stroke: #ffffff !important;
+      }}
+      #diagram svg text {{
+        fill: var(--text) !important;
+      }}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
   </head>
   <body>
     <header>
@@ -586,35 +651,60 @@ def build_html(mermaid_src: str, schema: list[dict]) -> str:
     </main>
 
     <script id="schema-json" type="application/json">{schema_blob}</script>
-    <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-
+    <script>
+    (async () => {{
       const src = `{escaped}`.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&amp;", "&");
       const schema = JSON.parse(document.getElementById("schema-json").textContent || "[]");
+
+      const container = document.getElementById("diagram");
+      const showError = (title, err) => {{
+        const msg = String(err && (err.stack || err.message) ? (err.stack || err.message) : err);
+        container.innerHTML = `<div style="padding:14px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \\"Liberation Mono\\", \\"Courier New\\", monospace; font-size:12px; color: var(--muted);">
+          <div style="font-weight:650; margin-bottom:6px;">${{title}}</div>
+          <div style="white-space:pre-wrap; border:1px solid var(--border); background: var(--code-bg); color: var(--code-text); padding:10px; border-radius:10px;">${{msg}}</div>
+        </div>`;
+      }};
+
+      const mermaid = window.mermaid;
+      if (!mermaid) {{
+        showError("Mermaid failed to load", "CDN script did not populate window.mermaid.");
+        return;
+      }}
 
       mermaid.initialize({{
         startOnLoad: false,
         securityLevel: "loose",
-        theme: "default",
+        theme: "base",
         er: {{ useMaxWidth: false }},
         themeVariables: {{
-          primaryColor: "#ffffff",
-          primaryBorderColor: "#cbd5e1",
-          primaryTextColor: "#0f172a",
-          lineColor: "#94a3b8",
-          tertiaryColor: "#f8fafc",
+          background: "#000000",
+          mainBkg: "#000000",
+          primaryColor: "#000000",
+          secondaryColor: "#000000",
+          tertiaryColor: "#000000",
+          primaryBorderColor: "#ffffff",
+          primaryTextColor: "#ffffff",
+          textColor: "#ffffff",
+          lineColor: "#ffffff",
         }},
       }});
 
-      const container = document.getElementById("diagram");
-      const {{ svg }} = await mermaid.render("erd", src);
-      container.innerHTML = svg;
+      try {{
+        const {{ svg }} = await mermaid.render("erd", src);
+        container.innerHTML = svg;
+      }} catch (e) {{
+        showError("Mermaid render failed", e);
+        throw e;
+      }}
 
       const svgEl = container.querySelector("svg");
+      if (!svgEl) {{
+        throw new Error("Rendered diagram did not produce an <svg> element.");
+      }}
       svgEl.setAttribute("width", "100%");
       svgEl.setAttribute("height", "100%");
 
-      const panZoom = window.svgPanZoom(svgEl, {{
+      const panZoom = window.svgPanZoom ? window.svgPanZoom(svgEl, {{
         zoomEnabled: true,
         controlIconsEnabled: false,
         fit: true,
@@ -622,18 +712,20 @@ def build_html(mermaid_src: str, schema: list[dict]) -> str:
         minZoom: 0.1,
         maxZoom: 25,
         zoomScaleSensitivity: 0.25,
-      }});
+      }}) : null;
 
       const bind = (id, fn) => {{
         const el = document.getElementById(id);
         if (el) el.addEventListener("click", fn);
       }};
 
-      bind("fit", () => panZoom.fit());
-      bind("center", () => panZoom.center());
-      bind("zin", () => panZoom.zoomIn());
-      bind("zout", () => panZoom.zoomOut());
-      bind("reset", () => {{ panZoom.resetZoom(); panZoom.center(); }});
+      if (panZoom) {{
+        bind("fit", () => panZoom.fit());
+        bind("center", () => panZoom.center());
+        bind("zin", () => panZoom.zoomIn());
+        bind("zout", () => panZoom.zoomOut());
+        bind("reset", () => {{ panZoom.resetZoom(); panZoom.center(); }});
+      }}
 
       const schemaRoot = document.getElementById("schema");
       const renderTable = (t) => {{
@@ -700,6 +792,10 @@ def build_html(mermaid_src: str, schema: list[dict]) -> str:
       }};
 
       schema.forEach((t) => schemaRoot.appendChild(renderTable(t)));
+    }})().catch((e) => {{
+      const container = document.getElementById("diagram");
+      if (container) container.textContent = String(e);
+    }});
     </script>
   </body>
 </html>

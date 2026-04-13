@@ -15,6 +15,28 @@ from dataframes import load_dataframes
 st.set_page_config(page_title="Freight Derivatives", layout="wide")
 st.title("Freight Derivatives")
 
+
+def _altair_dark_theme():
+    return {
+        "config": {
+            "background": "#000000",
+            "view": {"stroke": "#ffffff"},
+            "axis": {
+                "labelColor": "#ffffff",
+                "titleColor": "#ffffff",
+                "gridColor": "rgba(255,255,255,0.18)",
+                "domainColor": "#ffffff",
+                "tickColor": "#ffffff",
+            },
+            "legend": {"labelColor": "#ffffff", "titleColor": "#ffffff"},
+            "title": {"color": "#ffffff"},
+        }
+    }
+
+
+alt.themes.register("fd_dark", _altair_dark_theme)
+alt.themes.enable("fd_dark")
+
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 
 
@@ -179,7 +201,7 @@ Start with `Baltic Dry Index` (BDI) if you want a single headline series.
     domain_max = df_ranges["end_date"].max() + pd.Timedelta(days=180)
     coverage = (
         alt.Chart(df_ranges)
-        .mark_bar(color="#9CA3AF", size=10, cornerRadius=8, cornerRadiusEnd=8)
+        .mark_bar(color="#ffffff", size=10, cornerRadius=8, cornerRadiusEnd=8)
         .encode(
             y=alt.Y("IndexName:N", sort=selected, title="", axis=alt.Axis(labelLimit=0)),
             x=alt.X(
@@ -650,13 +672,13 @@ def page_reference() -> None:
                 pdk.Deck(
                     layers=[layer],
                     initial_view_state=view_state,
-                    map_style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+                    map_style="https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
                     tooltip={
                         "html": "<b>Port:</b> {Main Port Name}<br/>"
                         "<b>WPI:</b> {World Port Index Number}<br/>"
                         "<b>Country:</b> {Country Code}<br/>"
                         "<b>Harbor Size:</b> {Harbor Size Label}",
-                        "style": {"backgroundColor": "white", "color": "black"},
+                        "style": {"backgroundColor": "#000000", "color": "#ffffff"},
                     },
                 ),
                 use_container_width=True,

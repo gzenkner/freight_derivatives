@@ -59,6 +59,26 @@ def build_report(out_path: Path) -> None:
     # Allow exporting full datasets (Altair defaults to a 5000-row limit).
     alt.data_transformers.disable_max_rows()
 
+    def _altair_dark_theme():
+        return {
+            "config": {
+                "background": "#000000",
+                "view": {"stroke": "#ffffff"},
+                "axis": {
+                    "labelColor": "#ffffff",
+                    "titleColor": "#ffffff",
+                    "gridColor": "rgba(255,255,255,0.18)",
+                    "domainColor": "#ffffff",
+                    "tickColor": "#ffffff",
+                },
+                "legend": {"labelColor": "#ffffff", "titleColor": "#ffffff"},
+                "title": {"color": "#ffffff"},
+            }
+        }
+
+    alt.themes.register("fd_dark", _altair_dark_theme)
+    alt.themes.enable("fd_dark")
+
     project_dir = Path(__file__).resolve().parents[1]
 
     indices_json_path = project_dir / "datasets/indices/json"
@@ -76,7 +96,7 @@ def build_report(out_path: Path) -> None:
     )
 
     # ---- Indices: Coverage ----
-    coverage_color = "#9CA3AF"
+    coverage_color = "#ffffff"
     domain_pad_days = 180
     df_dates = df_bdi.copy()
     if "date" not in df_dates.columns and "Date" in df_dates.columns:
@@ -124,10 +144,10 @@ def build_report(out_path: Path) -> None:
         ),
         x2=alt.X2("end_date:T"),
     )
-    start_handle = base.mark_circle(size=70, color=coverage_color, stroke="#111827", strokeWidth=1.2).encode(
+    start_handle = base.mark_circle(size=70, color=coverage_color, stroke="#ffffff", strokeWidth=1.2).encode(
         x="start_date:T"
     )
-    end_handle = base.mark_circle(size=70, color=coverage_color, stroke="#111827", strokeWidth=1.2).encode(
+    end_handle = base.mark_circle(size=70, color=coverage_color, stroke="#ffffff", strokeWidth=1.2).encode(
         x="end_date:T"
     )
     coverage_chart = (
@@ -180,13 +200,13 @@ def build_report(out_path: Path) -> None:
         deck = pdk.Deck(
             layers=[layer],
             initial_view_state=view_state,
-            map_style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+            map_style="https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
             tooltip={
                 "html": "<b>Port:</b> {Main Port Name}<br/>"
                 "<b>WPI:</b> {World Port Index Number}<br/>"
                 "<b>Country:</b> {Country Code}<br/>"
                 "<b>Harbor Size:</b> {Harbor Size Label}",
-                "style": {"backgroundColor": "white", "color": "black"},
+                "style": {"backgroundColor": "#000000", "color": "#ffffff"},
             },
         )
         ports_embed = _pydeck_iframe("ports_map", deck, height=700)
@@ -224,25 +244,27 @@ def build_report(out_path: Path) -> None:
     <title>Baltic Dry Index — Report</title>
     <style>
       :root {{
-        --bg: #0b1220;
-        --panel: #0f1a2d;
-        --text: #e8eef9;
-        --muted: #a7b3c7;
-        --link: #67b7ff;
-        --border: rgba(255,255,255,0.12);
+        color-scheme: dark;
+        --bg: #000000;
+        --panel: #000000;
+        --panel-2: #000000;
+        --text: #ffffff;
+        --muted: rgba(255,255,255,0.82);
+        --link: #ffffff;
+        --border: rgba(255,255,255,0.35);
+        --code-bg: #000000;
       }}
       body {{
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         color: var(--text);
-        background: linear-gradient(180deg, var(--bg), #070b13);
+        background: var(--bg);
       }}
-      a {{ color: var(--link); text-decoration: none; }}
-      a:hover {{ text-decoration: underline; }}
+      a {{ color: var(--link); text-decoration: underline; text-underline-offset: 2px; }}
       header {{
         padding: 28px 22px 18px;
         border-bottom: 1px solid var(--border);
-        background: rgba(15, 26, 45, 0.7);
+        background: rgba(0, 0, 0, 0.92);
         backdrop-filter: blur(10px);
         position: sticky;
         top: 0;
@@ -259,7 +281,7 @@ def build_report(out_path: Path) -> None:
       }}
       main {{ max-width: 1200px; margin: 0 auto; padding: 18px 22px 60px; }}
       nav.toc {{
-        background: rgba(15, 26, 45, 0.9);
+        background: var(--panel);
         border: 1px solid var(--border);
         border-radius: 12px;
         padding: 14px 16px;
@@ -267,7 +289,7 @@ def build_report(out_path: Path) -> None:
       }}
       nav.toc a {{ display: inline-block; margin: 6px 14px 6px 0; font-size: 14px; }}
       section {{
-        background: rgba(15, 26, 45, 0.85);
+        background: var(--panel);
         border: 1px solid var(--border);
         border-radius: 14px;
         padding: 16px;
@@ -287,13 +309,13 @@ def build_report(out_path: Path) -> None:
         width: 100%;
         border: 1px solid var(--border);
         border-radius: 12px;
-        background: #fff;
+        background: var(--panel-2);
       }}
       .table-wrap {{
         overflow: auto;
         border: 1px solid var(--border);
         border-radius: 12px;
-        background: rgba(255,255,255,0.03);
+        background: var(--panel-2);
       }}
       table.df {{
         border-collapse: collapse;
@@ -301,8 +323,13 @@ def build_report(out_path: Path) -> None:
         min-width: 860px;
         font-size: 12px;
       }}
+      table.df tbody tr,
+      table.df tbody tr:nth-child(odd),
+      table.df tbody tr:hover {{
+        background: transparent;
+      }}
       table.df th, table.df td {{
-        border-bottom: 1px solid rgba(255,255,255,0.10);
+        border-bottom: 1px solid var(--border);
         padding: 8px 10px;
         vertical-align: top;
         color: var(--text);
@@ -311,12 +338,13 @@ def build_report(out_path: Path) -> None:
       table.df th {{
         position: sticky;
         top: 0;
-        background: rgba(11, 18, 32, 0.96);
+        background: #000000;
         z-index: 1;
         text-align: left;
         font-weight: 600;
       }}
       .note {{ color: var(--muted); font-size: 13px; margin-top: 6px; }}
+      code {{ background: var(--code-bg); border: 1px solid var(--border); color: var(--text); padding: 1px 6px; border-radius: 8px; }}
     </style>
   </head>
   <body>
