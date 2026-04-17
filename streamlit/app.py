@@ -287,7 +287,7 @@ def page_ffas() -> None:
     st.header("FFAs / Freight derivatives")
     st.markdown(
         """
-**What an FFA is (plain English):** a *financial* contract that pays out based on a published freight assessment
+**What an FFA is:** a *financial* contract that pays out based on a published freight assessment
 (a **route**) or a published aggregate (**index** / **basket**). No ship changes hands — it’s cash-settled.
 
 **Why FFAs exist:** the physical freight market is volatile. Shipowners and cargo interests use FFAs to **hedge**
@@ -420,7 +420,7 @@ Use the **Underlyings** view to see what contracts are actually settling to.
                     lines.append(f"- [{name}]({url})" if url else f"- {name}")
                 st.markdown("\n".join(lines))
 
-    with st.expander("Worked example (painfully detailed): hedging a real freight exposure", expanded=False):
+    with st.expander("Worked example: hedging a real freight exposure", expanded=False):
         st.markdown(
             """
 This is an **illustrative** (but realistic) dry-bulk hedging story using real companies. Numbers are simplified.
